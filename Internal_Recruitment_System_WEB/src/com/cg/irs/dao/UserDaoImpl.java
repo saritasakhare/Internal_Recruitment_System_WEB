@@ -2,6 +2,7 @@ package com.cg.irs.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -18,24 +19,42 @@ public class UserDaoImpl implements IUserDao {
 		
 		try{
 			
-			
+			//getUserDetail(userBean);
+			userBean.setPassword("1234");
+			System.out.println(userBean.getPassword()+userBean.getUserId());
+			Query query = entityManager.createNamedQuery("login");
+			query.setParameter("userId", userBean.getUserId());
+			query.setParameter("password", userBean.getPassword());
+			userBean=(UserBean) query.getSingleResult();
+			if(userBean==null)
+			{
+				throw new IRSException("Wrong Password Access Denied!");
+			}
 		}catch(Exception e)
 		{
-			
+			throw new IRSException("Unable to validate Password "+e.getMessage());
 		}
 		
-		return null;
+		return userBean;
 	}
 
+	
+	//Not Working
 	@Override
 	public UserBean getUserDetail(UserBean userBean) throws IRSException {
+		UserBean user=null;
 		try{
 			
-			entityManager.find(UserBean.class,userBean);
+			user=entityManager.find(UserBean.class,userBean);
+			if(user==null)
+			{
+				throw new IRSException("User Doesn't Exist");
+			}
 		}
 		catch(Exception e)
 		{
-			throw new IRSException("User Doesn't Exist");
+			throw new IRSException("Unable to find User "+e.getMessage());
 		}
+		return user;
 	}
 }

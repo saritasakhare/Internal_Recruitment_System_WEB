@@ -12,14 +12,14 @@
   </welcome-file-list>
   
   
-<filter>
-		<filter-name>FirstController</filter-name>
-		<filter-class>com.cg.irs.controller.FirstController</filter-class>
+<!-- <filter>
+		<filter-name>FrontController</filter-name>
+		<filter-class>com.cg.irs.controller.FrontController</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>FirstController</filter-name>
+		<filter-name>FrontController</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
   
   
   

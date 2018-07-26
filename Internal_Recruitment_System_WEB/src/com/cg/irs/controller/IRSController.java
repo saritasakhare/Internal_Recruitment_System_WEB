@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cg.irs.entity.UserBean;
+import com.cg.irs.exception.IRSException;
 import com.cg.irs.service.IAssignedRequisitionService;
 import com.cg.irs.service.IEmployeeService;
 import com.cg.irs.service.IProjectService;
@@ -75,11 +77,29 @@ public class IRSController
 		this.assingnedRequistionService = assingnedRequistionService;
 	}
 
-
+	/****************************************************
+	  
+	  			Mapping
+	  
+	 ***************************************************/
+	
+	
+	
+	
 	@RequestMapping(value="home.mvc")
 	public String getHomePage(Model model)
 	{
 		System.out.println("In controller");
+		UserBean userBean = new UserBean();
+		userBean.setUserId("101");
+		userBean.setPassword("1234");
+		try {
+			userBean=userService.login(userBean);
+			System.out.println(userBean.getRole());
+		} catch (IRSException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 		return "home";
 	}
 	

@@ -29,11 +29,17 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public UserBean login(UserBean userBean) throws IRSException {
+		
+		/**Removing Password**/
+		userBean.setPassword("");
 		return userDao.login(userBean);
 	}
 
 	@Override
 	public UserBean getUserDetail(UserBean userBean) throws IRSException {
+		
+		/**Removing Password**/
+		userBean.setPassword("");
 		return userDao.getUserDetail(userBean);
 	}
 	

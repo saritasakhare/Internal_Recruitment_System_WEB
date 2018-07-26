@@ -1,6 +1,7 @@
 package com.cg.irs.controller;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -9,16 +10,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import com.cg.irs.entity.UserBean;
+import com.cg.irs.exception.IRSException;
+import com.cg.irs.service.UserServiceImpl;
+
 /**
  * Servlet Filter implementation class FirstController
  */
 @WebFilter("/FirstController")
-public class FirstController implements Filter {
+public class FrontController implements Filter {
 
     /**
      * Default constructor. 
      */
-    public FirstController() {
+    public FrontController() {
         // TODO Auto-generated constructor stub
     }
 
@@ -36,6 +41,8 @@ public class FirstController implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		System.out.println("Filter is Called");
+
+		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
