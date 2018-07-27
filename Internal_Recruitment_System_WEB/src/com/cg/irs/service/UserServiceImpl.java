@@ -1,5 +1,7 @@
 package com.cg.irs.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +53,33 @@ public class UserServiceImpl implements IUserService {
 		
 		/**Removing Password**/
 		userBean.setPassword("");
+		return userBean;
+	}
+
+	@Override
+	public List<UserBean> getAllUsers(String userId) throws IRSException 
+	{
+		return userDao.getAllUsers(userId);
+	}
+
+	@Override
+	public void deleteUser(String userId) throws IRSException 
+	{
+		 userDao.deleteUser(userId);
+	}
+
+	@Override
+	public void updateUserRole(UserBean userBean) throws IRSException 
+	{
+		userDao.updateUserRole(userBean);		
+	}
+
+	@Override
+	public UserBean addUser(UserBean userBean) throws IRSException {
+		
+		userBean=userDao.addUser(userBean);
+		//Removing password from the bean
+		userBean.setPassword("");	
 		return userBean;
 	}
 	

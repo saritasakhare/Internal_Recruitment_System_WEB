@@ -18,9 +18,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 @NamedQueries(
-		value=@NamedQuery(name="login",query="Select user from UserBean user where user.userId=:userId and user.password=:password"))
+		value={@NamedQuery(name="login",query="Select user from UserBean user where user.userId=:userId and user.password=:password"),
+				@NamedQuery(name="getAllUsers",query="from UserBean userBean where userBean.userId not in(:userId)")})
 public class UserBean implements Serializable
 {
+	
+
+	
+	public UserBean() {
+		super();
+	}
+
+
+	public UserBean(String userId) {
+		super();
+		this.userId = userId;
+	}
+
+
 	@Id
 	@Column(name="users_id")
 	private String userId;
