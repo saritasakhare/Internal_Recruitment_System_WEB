@@ -10,9 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import com.cg.irs.entity.UserBean;
-import com.cg.irs.exception.IRSException;
-import com.cg.irs.service.UserServiceImpl;
 
 /**
  * Servlet Filter implementation class FirstController

@@ -91,10 +91,10 @@ public class IRSController
 	{
 		System.out.println("In controller");
 		UserBean userBean = new UserBean();
-		userBean.setUserId("101");
-		userBean.setPassword("1234");
+		userBean.setUserId("121");
+		userBean.setPassword("12345");
 		try {
-			userBean=userService.login(userBean);
+			userBean=userService.getUserDetail(userBean);
 			System.out.println(userBean.getRole());
 		} catch (IRSException e) {
 			e.printStackTrace();

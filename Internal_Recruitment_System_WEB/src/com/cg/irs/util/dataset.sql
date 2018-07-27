@@ -1,4 +1,5 @@
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','ADMIN');
+insert into users(users_id,password,role) values('101','1234','ADMIN');
 
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','RM');
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','RM');
