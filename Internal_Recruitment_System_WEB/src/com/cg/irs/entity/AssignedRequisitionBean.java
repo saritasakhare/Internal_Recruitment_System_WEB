@@ -6,12 +6,16 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @SuppressWarnings("serial")
 @Entity(name="assigned_Requisition")
 @Table
+@NamedQueries(
+		value={@NamedQuery(name="getSpecificAssignedRequisition",query="from AssignedRequisitionBean assignedRequisitionBean where assignedRequisitionBean.userBean.userId=:rmId")})
 public class AssignedRequisitionBean implements Serializable{
 
 	@ManyToOne

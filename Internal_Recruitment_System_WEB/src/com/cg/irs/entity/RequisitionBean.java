@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 @Table(name="Requisition")
 @NamedQueries(
 		value={@NamedQuery(name="getAllRequisitions",query="from RequisitionBean requisitionBean"),
-				@NamedQuery(name="getSpecificRequisition",query="from RequisitionBean requisitionBean where requisitionBean.userId=:userId")})
+				@NamedQuery(name="getSpecificRequisition",query="from RequisitionBean requisitionBean where requisitionBean.userBean.userId=:userId")})
 public class RequisitionBean implements Serializable{
 
 	
