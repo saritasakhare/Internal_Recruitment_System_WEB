@@ -42,9 +42,7 @@ public class UserBean implements Serializable
 		this.userId = userId;
 	}
 	
-	/*@SequenceGenerator(name="user_seq",initialValue=100,sequenceName="user_seq")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="user_seq")
-	*/
+	
 	@Id
 	@Column(name="users_id")
 	private String userId;
@@ -130,7 +128,6 @@ public class UserBean implements Serializable
 			Set<AssignedRequisitionBean> assignedRequisitionBean) {
 		this.assignedRequisitionBean = assignedRequisitionBean;
 	}
-	
 	
 	
 }
