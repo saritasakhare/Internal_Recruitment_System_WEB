@@ -20,11 +20,11 @@
         </div>
         
         <div class="body">
-          <h1>
+          
 	          <div class="error" align="center" style="color: red; font-family: sans-serif;">
 	          <c:if test="${msg!=null}">${msg}</c:if>
 	          </div>
-          </h1>  
+           
             <div class="login-panel">
                 <div class="title">
                    <label class="title">LOG IN</label> 

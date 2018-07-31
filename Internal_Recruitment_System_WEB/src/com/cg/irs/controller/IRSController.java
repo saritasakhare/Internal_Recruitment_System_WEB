@@ -85,13 +85,22 @@ public class IRSController
 	}
 
 	/****************************************************
-	  
 	  			Mapping
-	  
+	  			
 	 ***************************************************/
+
+	@RequestMapping(value="/home")
+	public String getHomePage(Model m)
+	{
+		return "Home";
+	}
 	
-	
-	
+	@RequestMapping(value="/adminView")
+	public String getAdminViewPage(Model m)
+	{
+		System.out.println("going to adminView");
+		return "admin/adminView";
+	}
 	
 	@RequestMapping(value="login.mvc",method=RequestMethod.POST)
 	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,Model model)
