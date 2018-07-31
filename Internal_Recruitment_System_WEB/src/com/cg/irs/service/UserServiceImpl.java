@@ -15,7 +15,6 @@ import com.cg.irs.exception.IRSException;
 public class UserServiceImpl implements IUserService {
 	
 	public UserServiceImpl() {
-		System.out.println("Created User");
 	}
 	
 	@Autowired
@@ -31,19 +30,18 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public UserBean login(UserBean userBean) throws IRSException {
-		
 		UserBean user = userDao.getUserDetail(userBean);
 		if(user.getPassword().equals(userBean.getPassword()))
 		{
 			/**Removing Password**/
 			userBean.setPassword("");	
+			
 		}
 		else
 		{
 			throw new IRSException("Password Wrong");
 		}
-		
-		return userBean;
+		return user;
 	}
 
 	@Override

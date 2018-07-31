@@ -2,7 +2,7 @@
     <wb-module deploy-name="Internal_Recruitment_System_WEB">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="Internal_Recruitment_System_WEB"/>
         <property name="java-output-path" value="/Internal_Recruitment_System_WEB/build/classes"/>
     </wb-module>

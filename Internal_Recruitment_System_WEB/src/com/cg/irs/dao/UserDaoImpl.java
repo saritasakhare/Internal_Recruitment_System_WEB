@@ -23,7 +23,6 @@ public class UserDaoImpl implements IUserDao {
 	public UserBean getUserDetail(UserBean userBean) throws IRSException {
 		UserBean user=null;
 		try{
-			System.out.println(userBean.getUserId());
 			user=entityManager.find(UserBean.class,userBean.getUserId());
 			if(user==null)
 			{
@@ -32,7 +31,7 @@ public class UserDaoImpl implements IUserDao {
 		}
 		catch(Exception e)
 		{
-			throw new IRSException("Unable to find User "+e.getMessage());
+			throw new IRSException(e.getMessage());
 		}
 		return user;
 	}

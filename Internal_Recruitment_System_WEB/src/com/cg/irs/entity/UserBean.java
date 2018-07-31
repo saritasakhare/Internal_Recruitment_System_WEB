@@ -7,11 +7,17 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.annotations.Generated;
 
 
 @SuppressWarnings("serial")
@@ -38,12 +44,15 @@ public class UserBean implements Serializable
 
 	@Id
 	@Column(name="users_id")
+	@SequenceGenerator(name="user_seq",initialValue=100,sequenceName="user_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="user_seq")
 	private String userId;
 	
 	@Column(name="password")
 	private String password;
 	
 	@Column(name="role")
+	@Pattern(regexp="ADMIN|RM|RMGE",message="Role Shiuld Be ADMIN|RM|RMGE")
 	private String role;
 
 	

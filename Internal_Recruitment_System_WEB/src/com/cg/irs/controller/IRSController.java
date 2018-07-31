@@ -1,9 +1,16 @@
 package com.cg.irs.controller;
 
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
@@ -86,21 +93,55 @@ public class IRSController
 	
 	
 	
-	@RequestMapping(value="home.mvc")
-	public String getHomePage(Model model)
+	@RequestMapping(value="login.mvc",method=RequestMethod.POST)
+	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,Model model)
 	{
-		System.out.println("In controller");
-		UserBean userBean = new UserBean();
-		userBean.setUserId("121");
-		userBean.setPassword("12345");
-		try {
-			userBean=userService.getUserDetail(userBean);
-			System.out.println(userBean.getRole());
-		} catch (IRSException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+		String redirection ="";
+		try{
+			UserBean userBean = new UserBean();
+			userBean.setPassword(password);
+			userBean.setUserId(userId);			
+			userBean = userService.login(userBean);
+			redirection = userBean.getRole()+"HomePage";
 		}
-		return "home";
+		catch(IRSException e)
+		{
+			model.addAttribute("msg", e.getMessage());
+			return "../../login";
+		}
+		catch(Exception e)
+		{
+			model.addAttribute("msg", e.getMessage());
+			return "Error";
+		}	
+		if(redirection.equals("ADMINHomePage"))
+		{
+			model.addAttribute("user", new UserBean());
+		}
+		return redirection;
+	}
+	
+	@RequestMapping(value="adduser.mvc",method=RequestMethod.POST)
+	public String addUser(@Valid @ModelAttribute("user") UserBean user ,BindingResult result,Model model)
+	{
+		if(result.hasErrors())
+		{
+			return "ADMINHomePage";
+		}
+		try{
+			user = userService.addUser(user);
+		}
+		catch(IRSException e)
+		{
+			model.addAttribute("msg", e.getMessage());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "Error";
+		}	
+		return "ADMINHomePage";
 	}
 	
 }
