@@ -1,0 +1,41 @@
+
+/*	Form Styling	*/
+label
+{
+	font:normal 100% "Segoe UI";
+	color:#82189c;
+}
+
+input[type="text"],input[type="password"]
+{
+	width:200px;
+	height:25px;
+	border:1px solid #ba6bf1;
+	color:#631ca5;
+	font:normal 100% Calibri;
+	margin-top:2%;
+	padding-left:2%;
+}
+input[type="submit"],input[type="reset"]
+{
+	width:120px;
+	height:40px;
+
+	color:blueviolet;
+	border:2px solid blueviolet;
+	background-color:rgba(0,0,0,0);
+
+	font:bold 100% "Segoe UI";
+
+}
+input
+{
+	margin-top:2%;
+	margin-left:2%;
+}
+input[type="submit"]:hover
+{
+	background:blueviolet;
+	border:0px solid #ccc3f3;
+	color:white;
+}

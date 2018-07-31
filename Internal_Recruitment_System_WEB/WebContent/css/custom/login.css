@@ -1,0 +1,63 @@
+.login-panel
+{
+  margin-top:5%;
+  margin-left:20%;
+  width: 60%;
+  height:320px;
+  padding:0%;
+  box-sizing: border-box;
+  border:2px solid #ff0000;
+}
+
+.form{
+
+  padding: 2%;
+  padding-left:10%;
+  box-sizing: border-box;
+}
+.form label
+{
+   font:normal 20px "Segoe UI";
+  padding: 2%;
+  color:#9393ec;
+  color:black;
+}
+
+table
+{
+  width: 80%;
+}
+.form input
+{
+  width: 100%;
+  height: 30px;
+  margin-top:0px;
+  border:2px solid #e6e2fb;
+}
+.form:nth-child(1) label{ 
+  margin-top:2%;
+}
+.form input[type="submit"]
+{
+  margin-top: 20px;
+  height:35px;
+  border : 2px solid blueviolet;
+}
+
+.login-panel .title
+{
+   width: 100%;
+   height: 25%;
+   background: #f95b2a;
+}
+.title
+{
+  box-sizing: border-box;
+}
+.login-panel .title
+{
+  font:bold 20px "Segoe UI";
+  padding: 4%;
+  height: 100px;
+  box-sizing: border-box;
+}

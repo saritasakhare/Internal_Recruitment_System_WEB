@@ -1,0 +1,78 @@
+/************************
+    All fonts
+****************************/
+
+@import url('https://fonts.googleapis.com/css?family=Sunflower:700');
+
+/*******************************************/
+
+body
+{
+    background: #ffffff url('../img/img.png') no-repeat;
+    background-size:cover;
+}
+
+/**************************
+    Header Style sheet
+*******************************/
+.header
+{
+    display: grid;
+    grid-template-rows: repeat(2, 0fr);
+    grid-template-columns: repeat(1, 0fr);
+    
+    width: 101.4%;
+    height: 130px;
+    margin-left:-.6%;
+    margin-top:-1%;
+    background:#0b2e8e url('../img/img.png') no-repeat;
+    background-size:100% 100%;
+    
+}
+.footer
+{
+    width: 100%;
+    height: 15%;
+    background:#29294a;
+    position: fixed;
+    top:85%;
+    left:0px;
+}
+
+.header .icon
+{
+    grid-column: 1;
+    grid-row: 1/4;
+    
+    width:180px;
+    height:100%;
+    background: white url('../img/img6.jpg') no-repeat;
+    background-size:cover;
+}
+
+.header .title
+{
+    grid-column: 2;
+    grid-row:1;
+    
+    font:bold 40px Sunflower , "Segoe UI";
+    color:#fff;
+    /*text-shadow:1px 1px 1px #101010;*/
+    letter-spacing: 1px;
+    padding-top:1.5%;
+    padding-left: 2%;
+}
+.header .desc-ln
+{
+    grid-column:2;
+    grid-row: 2;
+    
+    color:#ede9f5;
+    color:white;
+    font:italic 18px "Calibri";
+    padding-left: 0%;
+    padding-left: 2%;
+    
+}
+/******************************/
+/******************************/

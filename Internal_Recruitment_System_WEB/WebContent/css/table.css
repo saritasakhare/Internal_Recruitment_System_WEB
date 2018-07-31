@@ -1,0 +1,47 @@
+/*	Table Styling	*/
+
+.table
+{
+	width:700px;
+	margin-left:20%;
+	margin-top:6%;
+	box-sizing:border-box;
+}
+td
+{
+	margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+	height:30px;
+	/*background:#9396f5;*/
+	font:normal 100% "Segoe UI";
+	padding-left:2%;
+}
+
+
+th
+{
+	margin:0px;
+	background:#640384;
+	padding:0px;
+	box-sizing:border-box;
+	height:35px;
+	color:#fffcfc;
+	font:bold 105% "Segoe UI";
+	bordor:2px solid red;
+}
+/*nth child design*/
+tr:nth-child(odd) {
+    background-color: #61052a;
+    color:#f5f7f9;
+}
+
+tr:nth-child(even) {
+    background: #fd9b7c;
+    color:white;
+}
+tr:hover
+{
+	color:#e83939;
+	background-color:#ffffff;
+}
