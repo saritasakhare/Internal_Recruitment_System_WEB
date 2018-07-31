@@ -16,8 +16,6 @@ DROP sequence user_id_seq;
 DROP sequence requisition_id_seq;
 
 
-
-
 CREATE TABLE users
 (
 	users_id VARCHAR2(10) Primary Key,

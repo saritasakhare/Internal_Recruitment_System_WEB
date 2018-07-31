@@ -98,6 +98,7 @@ public class UserDaoImpl implements IUserDao {
 		
 		try
 		{
+			userBean.setUserId(generateUserIdUsingSeq());
 			entityManager.persist(userBean);
 			
 		} 
@@ -108,4 +109,26 @@ public class UserDaoImpl implements IUserDao {
 		}
 		return userBean;
 	}
+	
+	/*
+     * Generate Question Id using Static var.
+     */
+    static int id=0;
+    public int generateUserId()
+    {
+        id++;
+        return id;
+    }
+    
+    /*
+     * Generate Question Id using Sequence.
+     */
+    public String generateUserIdUsingSeq()
+    {
+        Query query = entityManager.createNativeQuery("select User_Id_Seq.nextval from dual");
+        String id = ""+query.getSingleResult();
+        return id;
+    }
+	
+	
 }

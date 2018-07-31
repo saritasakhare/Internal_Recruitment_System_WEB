@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @SuppressWarnings("serial")
@@ -40,12 +41,12 @@ public class UserBean implements Serializable
 		super();
 		this.userId = userId;
 	}
-
-
+	
+	/*@SequenceGenerator(name="user_seq",initialValue=100,sequenceName="user_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="user_seq")
+	*/
 	@Id
 	@Column(name="users_id")
-	@SequenceGenerator(name="user_seq",initialValue=100,sequenceName="user_seq")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="user_seq")
 	private String userId;
 	
 	@Column(name="password")
