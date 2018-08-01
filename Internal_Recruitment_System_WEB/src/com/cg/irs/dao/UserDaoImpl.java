@@ -100,6 +100,7 @@ public class UserDaoImpl implements IUserDao {
 			
 			userBean.setUserId(generateUserIdUsingSeq());
 			entityManager.persist(userBean);
+			entityManager.flush();
 			
 		} 
 		catch (Exception e) 
