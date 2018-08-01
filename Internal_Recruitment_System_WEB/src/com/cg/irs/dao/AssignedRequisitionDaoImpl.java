@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cg.irs.entity.AssignedRequisitionBean;
-import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
 
 @Repository("assignedRequisitionDao")
@@ -63,11 +62,15 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		{
 			Query query = entityManager.createNativeQuery("select employee_id from assigned_requisition where requisition_id="+requisitionId);
 			empIds=query.getResultList();
+			if(empIds==null || empIds.size()==0)
+			{
+				throw new Exception("Employees does not exist for requisition : "+requisitionId);
+			}
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			throw new IRSException("Unable fetch employee ID's for requisition Id : "+requisitionId);
+			throw new IRSException(e.getMessage()+"\nUnable fetch employee ID's for requisition Id : "+requisitionId);
 		}
 		return empIds;
 	}
@@ -80,11 +83,15 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		{
 			Query query=entityManager.createNativeQuery("delete from assigned_requisition where requisition_id='"+requisitionId+"' and employee_id='"+employeeId+"'");
 			result=query.executeUpdate();
+			if(result==0)
+			{
+				throw new Exception("delete operation failed");
+			}
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
-			throw new IRSException("Unable delete assigned requisition for requisition Id : "+requisitionId);
+			throw new IRSException(e.getMessage()+"\nUnable delete assigned requisition for requisition Id : "+requisitionId);
 		}
 		return result;
 	}
