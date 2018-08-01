@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1> <a href="admin/addUser.mvc" > Add New User </a> </h1>
-	<h1> <a href="admin/assignRoles.mvc" > Assign Roles </a> </h1>
-	<h1> <a href="admin/deleteUser.mvc" > Delete Existing Users </a> </h1>
-	<h1> <a href="logout.mvc" > Logout </a> </h1>
-	
+	<h1>viewAllRequisitions</h1>
 </body>
 </html>

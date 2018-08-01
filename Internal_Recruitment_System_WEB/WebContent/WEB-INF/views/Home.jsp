@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1> <a href="adminView.mvc"> Admin </a> </h1>
+	<h1> <a href="resourceManagerView.mvc"> Resource Manager </a> </h1>
+	<h1> <a href="resourceManagerExecutiveView.mvc"> Resource Manager Executive </a> </h1>
 </body>
 </html>

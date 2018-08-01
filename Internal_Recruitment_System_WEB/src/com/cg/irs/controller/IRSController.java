@@ -102,6 +102,20 @@ public class IRSController
 		return "admin/adminView";
 	}
 	
+	@RequestMapping(value="/resourceManagerView")
+	public String getResourceManagerViewPage(Model m)
+	{
+		System.out.println("going to resourceManagerView");
+		return "rm/resourceManagerView";
+	}
+	
+	@RequestMapping(value="/resourceManagerExecutiveView")
+	public String getResourceManagerExecutiveViewPage(Model m)
+	{
+		System.out.println("going to resourceManagerView");
+		return "rmge/resourceManagerExecutiveView";
+	}
+	
 	@RequestMapping(value="login.mvc",method=RequestMethod.POST)
 	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,Model model)
 	{
