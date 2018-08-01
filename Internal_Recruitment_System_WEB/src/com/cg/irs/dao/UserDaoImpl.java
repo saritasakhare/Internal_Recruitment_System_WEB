@@ -6,8 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import oracle.net.aso.e;
-
 import org.springframework.stereotype.Repository;
 
 import com.cg.irs.entity.UserBean;
