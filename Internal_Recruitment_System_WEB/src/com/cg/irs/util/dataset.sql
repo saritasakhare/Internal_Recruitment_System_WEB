@@ -1,6 +1,7 @@
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','ADMIN');
 insert into users(users_id,password,role) values('101','1234','ADMIN');
 
+insert into users(users_id,password,role) values(101,'1234','RM');
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','RM');
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','RM');
 insert into users(users_id,password,role) values(user_id_seq.NEXTVAL,'1234','RMGE');
@@ -35,9 +36,9 @@ insert into project(project_id,project_name,description,start_date,end_date,rm_i
  insert into employee(employee_id,employee_name,project_id,skill,domain,experience_yrs) 
  		values('108','Naveen','RMG','Level3','Java EE',3); 
  insert into employee(employee_id,employee_name,project_id,skill,domain,experience_yrs) 
- 		values('105','Shrinath','RMG','Level3','Java EE',3); 
+ 		values('109','Shrinath','RMG','Level3','Java EE',3); 
  insert into employee(employee_id,employee_name,project_id,skill,domain,experience_yrs) 
- 		values('105','Shrinithi','RMG','Level3','Java EE',3); 
+ 		values('110','Shrinithi','RMG','Level3','Java EE',3); 
  		
 /*	Select Queries	*/
 select project_id,project_name,description,rm_id from project;

@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cg.irs.entity.ProjectBean;
 import com.cg.irs.entity.RequisitionBean;
 import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
@@ -25,20 +27,29 @@ public class ResourceManagerController {
 	@RequestMapping(value="/raiseRequisition")
 	public String getRaiseRequisitionPage(Model m)
 	{
-		m.addAttribute("requisition", new RequisitionBean());
+		RequisitionBean requisition =  new RequisitionBean();
+		
+		m.addAttribute("requisition",requisition);
+		
 		return "rm/raiseRequisition";
 	}
 	
 	@RequestMapping(value="/processRaiseRequisition")
-	public String processRaiseRequisition(@Valid @ModelAttribute("requisition") RequisitionBean requisition,BindingResult rs, Model m)
+	public String processRaiseRequisition( @Valid @ModelAttribute("requisition") RequisitionBean requisition,BindingResult rs, Model m)
 	{
 		
 		try {
+			ProjectBean project = new ProjectBean();
+			project.setProjectId("101");
+			
 			UserBean user = new UserBean();
-			user.setUserId("101");
+			user.setUserId("102");
 			
 			requisition.setUserBean(user);
+			requisition.setProjectBean(project);
+			
 			RequisitionBean req = requisitionService.insertRequisition(requisition);
+			
 			m.addAttribute("msg","SuccessFully Raised requisition with Id : "+req.getRequisitionId());
 			
 		} catch (IRSException e) {

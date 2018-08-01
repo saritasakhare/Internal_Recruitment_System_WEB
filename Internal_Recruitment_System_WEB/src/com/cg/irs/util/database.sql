@@ -31,7 +31,7 @@ CREATE TABLE project
 	description VARCHAR2(20),
 	start_date TIMESTAMP,
 	end_date TIMESTAMP,
-	users_id  VARCHAR2(15) references users(users_id)
+	rm_id  VARCHAR2(15) references users(users_id)
  );
 	
 		
@@ -49,7 +49,7 @@ CREATE TABLE employee
  CREATE TABLE Requisition
  (
  	requisition_id VARCHAR2(10) Primary Key,
- 	RM_id VARCHAR2(10) references users(users_id),
+ 	rm_id VARCHAR2(10) references users(users_id),
  	project_id VARCHAR2(10) references project(project_id),
  	date_created TIMESTAMP,
  	date_closed TIMESTAMP,

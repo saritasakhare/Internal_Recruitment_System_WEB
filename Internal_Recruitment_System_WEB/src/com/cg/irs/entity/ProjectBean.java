@@ -46,16 +46,16 @@ public class ProjectBean implements Serializable
 	
 	// Many to One User    RM_id  VARCHAR2(15) references users(users_id)
 	@ManyToOne
-	@JoinColumn(name="users_Id")
+	@JoinColumn(name="rm_Id")
 	private UserBean userBean;
 	
 	// one to Many EmployeeBean 
-	@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)
-	Set<EmployeeBean> employeeBean = new HashSet<>();
+	/*@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)
+	Set<EmployeeBean> employeeBean = new HashSet<>();*/
 	
 	//One To Many Requisition Bean
-	@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)
-	Set<RequisitionBean> requisitionBean = new HashSet<>();
+	/*@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)
+	Set<RequisitionBean> requisitionBean = new HashSet<>();*/
 
 	public String getProjectId() {
 		return projectId;
@@ -105,7 +105,7 @@ public class ProjectBean implements Serializable
 		this.userBean = userBean;
 	}
 
-	public Set<EmployeeBean> getEmployeeBean() {
+	/*public Set<EmployeeBean> getEmployeeBean() {
 		return employeeBean;
 	}
 
@@ -119,7 +119,7 @@ public class ProjectBean implements Serializable
 
 	public void setRequisitionBean(Set<RequisitionBean> requisitionBean) {
 		this.requisitionBean = requisitionBean;
-	}
+	}*/
 
 	
 	

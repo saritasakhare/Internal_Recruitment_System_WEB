@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.irs.entity.ProjectBean;
 import com.cg.irs.entity.RequisitionBean;
+import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
 
 @Repository("requisitionDao")
@@ -22,6 +23,25 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 			throws IRSException {
 		try
 		{
+			String pId = requisitionBean.getProjectBean().getProjectId();
+			System.out.println(" pId : "+pId);
+			String uId = requisitionBean.getUserBean().getUserId();
+			System.out.println(" uId : "+uId);
+			
+			ProjectBean project = entityManager.find(ProjectBean.class,pId);
+			System.out.println(" project : "+project);
+			
+			UserBean user = entityManager.find(UserBean.class,uId);
+			/*Query query = entityManager.createQuery("from UserBean user where user.userId=:uId",UserBean.class);			
+			query.setParameter("uId",uId);
+			
+			user = (UserBean) query.getSingleResult();*/
+			
+			System.out.println(" user : "+user);
+			
+			requisitionBean.setProjectBean(project);
+			requisitionBean.setUserBean(user);
+			
 			requisitionBean.setRequisitionId(generateRequisitionIdUsingSeq());
 			entityManager.persist(requisitionBean);
 			

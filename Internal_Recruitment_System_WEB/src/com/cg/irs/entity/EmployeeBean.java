@@ -40,13 +40,10 @@ public class EmployeeBean implements Serializable{
 	private int years;
 
 	//One to Many AssingedRequestion
-	@OneToMany(mappedBy="employeeBean")
-	Set<AssignedRequisitionBean> assignedRequisitionBean = new HashSet<>();
+	//Wrong 
+	/*@OneToMany(mappedBy="employeeBean")
+	Set<AssignedRequisitionBean> assignedRequisitionBean = new HashSet<>();*/
 
-	
-	
-	
-	
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -95,7 +92,7 @@ public class EmployeeBean implements Serializable{
 		this.years = years;
 	}
 
-	public Set<AssignedRequisitionBean> getAssignedRequisitionBean() {
+	/*public Set<AssignedRequisitionBean> getAssignedRequisitionBean() {
 		return assignedRequisitionBean;
 	}
 
@@ -103,7 +100,7 @@ public class EmployeeBean implements Serializable{
 			Set<AssignedRequisitionBean> assignedRequisitionBean) {
 		this.assignedRequisitionBean = assignedRequisitionBean;
 	}
-	
+	*/
 	
 	
 	
