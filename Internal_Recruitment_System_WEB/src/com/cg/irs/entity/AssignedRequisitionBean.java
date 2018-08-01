@@ -12,8 +12,8 @@ import javax.persistence.Table;
 
 
 @SuppressWarnings("serial")
-@Entity(name="assigned_Requisition")
-@Table
+@Entity
+@Table(name="assigned_Requisition")
 @NamedQueries(
 		value={@NamedQuery(name="getSpecificAssignedRequisition",query="from AssignedRequisitionBean assignedRequisitionBean where assignedRequisitionBean.userBean.userId=:rmId")})
 public class AssignedRequisitionBean implements Serializable{
