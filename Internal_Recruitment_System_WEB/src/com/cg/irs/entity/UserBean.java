@@ -45,7 +45,7 @@ public class UserBean implements Serializable
 	private String password;
 	
 	@Column(name="role")
-	@Pattern(regexp="ADMIN|RM|RMGE",message="Role Shiuld Be ADMIN|RM|RMGE")
+	//@Pattern(regexp="ADMIN|RM|RMGE",message="Role Shiuld Be ADMIN|RM|RMGE")
 	private String role;
 
 	

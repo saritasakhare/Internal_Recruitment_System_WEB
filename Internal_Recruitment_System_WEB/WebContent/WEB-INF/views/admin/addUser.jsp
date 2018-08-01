@@ -24,7 +24,7 @@
 	       </div>
                     <div>
                     
-        	<f:form  action="admin/processAddUser.mvc" method="post" modelAttribute="user">
+        	<f:form  action="processAddUser.mvc" method="post" modelAttribute="user">
         		<table>
         		<tr>
         			<th> Password </th>

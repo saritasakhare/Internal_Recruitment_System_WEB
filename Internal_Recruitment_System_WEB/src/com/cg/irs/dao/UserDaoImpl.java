@@ -96,6 +96,8 @@ public class UserDaoImpl implements IUserDao {
 		
 		try
 		{
+			System.out.println(" userId : "+userBean.getUserId()+" pswd : "+userBean.getPassword()+" role : "+userBean.getRole());
+			
 			userBean.setUserId(generateUserIdUsingSeq());
 			entityManager.persist(userBean);
 			

@@ -32,7 +32,10 @@ public class AdminController {
 	@RequestMapping(value="processAddUser")
 	public String processAddUser(@Valid @ModelAttribute("user") UserBean user,BindingResult rs, Model m)
 	{
+		System.out.println("adding user ..");
+		
 		try {
+			System.out.println("adding user ..");
 			
 			UserBean userBean = userService.addUser(user);
 			m.addAttribute("msg","User Created Successfully with Id : "+userBean.getUserId());
