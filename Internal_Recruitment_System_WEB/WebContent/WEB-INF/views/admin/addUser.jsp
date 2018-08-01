@@ -32,10 +32,17 @@
         		</tr>
         		<tr>
         			<th> Role </th>
-        			<td><f:input path="role"/><f:errors path="role" /></td>
+        			<td>
+        				<f:select path="role">
+        					<f:option value="ADMIN"/>
+        					<f:option value="ROLE"/>
+        					<f:option value="RMGE"/>
+        				</f:select>
+        				<f:errors path="role" />
+        			</td>
         		</tr>
         		<tr>
-        			<th colspan="2"><input type="submit" value="ADD"> </th>
+        			<th colspan="2"><input type="submit" value="Add"> </th>
         		</tr>
         		</table>
         	</f:form>

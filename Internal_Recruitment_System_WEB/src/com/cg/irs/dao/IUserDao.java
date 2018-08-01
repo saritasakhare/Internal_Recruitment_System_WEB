@@ -17,4 +17,6 @@ public interface IUserDao {
 		public void updateUserRole(UserBean userBean) throws IRSException;
 		
 		public UserBean addUser(UserBean userBean) throws IRSException;
+		
+		public UserBean getUserById(String userId) throws IRSException;
 }

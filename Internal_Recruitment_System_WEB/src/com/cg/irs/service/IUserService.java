@@ -26,6 +26,6 @@ public interface IUserService {
 	//Adding user and returning userBean without password
 	public UserBean addUser(UserBean userBean) throws IRSException;
 	
-		
+	public UserBean getUserById(String userId) throws IRSException;
 	
 }

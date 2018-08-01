@@ -1,5 +1,7 @@
 package com.cg.irs.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
@@ -32,11 +35,8 @@ public class AdminController {
 	@RequestMapping(value="processAddUser")
 	public String processAddUser(@Valid @ModelAttribute("user") UserBean user,BindingResult rs, Model m)
 	{
-		System.out.println("adding user ..");
 		
 		try {
-			
-			System.out.println("adding user ..");
 			
 			UserBean userBean = userService.addUser(user);
 			m.addAttribute("msg","User Created Successfully with Id : "+userBean.getUserId());
@@ -48,16 +48,62 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/assignRoles")
-	public String getAssignRolePage(Model m)
+	public String getAssignRolePage(@RequestParam("userId") String userId, Model m)
 	{
-		m.addAttribute("user",new UserBean());
+		System.out.println("user Id : "+userId);
+		if(userId!=null)
+		{
+			try {
+				UserBean user = userService.getUserById(userId);
+				System.out.println("user : "+user.getUserId());
+				m.addAttribute("user",user);
+				
+			} catch (IRSException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return "admin/assignRoles";
+	}
+	
+	@RequestMapping("/processAssignRoles")
+	public String processAssignRolePage(@Valid @ModelAttribute("user") UserBean user,BindingResult rs,Model m)
+	{
+		
+		try {
+			userService.updateUserRole(user);
+			m.addAttribute("msg","User Role Updated Successfully for User Id : "+user.getUserId());
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+		
 		return "admin/assignRoles";
 	}
 	
 	@RequestMapping("/deleteUser")
-	public String getDeleteUserPage(Model m)
+	public String deleteUser(@RequestParam("userId") String userId, Model m)
 	{
-		m.addAttribute("user",new UserBean());
-		return "admin/deleteUser";
+		try {
+			userService.deleteUser(userId);
+			m.addAttribute("msg","User Deleted");
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+		
+		return "admin/viewAllUsers";
 	}
+	
+	@RequestMapping("/viewAllUsers")
+	public String getViewAllUserPage(Model m)
+	{
+		try {
+			List<UserBean> userList = userService.getAllUsers("101");
+			m.addAttribute("userList",userList);
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+		return "admin/viewAllUsers";
+	}
+	
 }

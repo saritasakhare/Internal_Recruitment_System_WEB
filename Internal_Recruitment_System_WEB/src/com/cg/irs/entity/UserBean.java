@@ -122,6 +122,15 @@ public class UserBean implements Serializable
 			Set<AssignedRequisitionBean> assignedRequisitionBean) {
 		this.assignedRequisitionBean = assignedRequisitionBean;
 	}
+
+
+	@Override
+	public String toString() {
+		return "UserBean [userId=" + userId + ", password=" + password
+				+ ", role=" + role + ", projectBean=" + projectBean
+				+ ", requisitionBean=" + requisitionBean
+				+ ", assignedRequisitionBean=" + assignedRequisitionBean + "]";
+	}
 	
 	
 }

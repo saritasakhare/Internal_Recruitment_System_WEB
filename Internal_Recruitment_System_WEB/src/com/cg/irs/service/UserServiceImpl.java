@@ -80,6 +80,11 @@ public class UserServiceImpl implements IUserService {
 		userBean.setPassword("");	
 		return userBean;
 	}
+
+	@Override
+	public UserBean getUserById(String userId) throws IRSException {
+		return userDao.getUserById(userId);
+	}
 	
 	
 }

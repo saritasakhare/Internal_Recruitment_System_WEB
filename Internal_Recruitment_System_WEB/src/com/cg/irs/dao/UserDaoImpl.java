@@ -96,7 +96,7 @@ public class UserDaoImpl implements IUserDao {
 		
 		try
 		{
-			System.out.println(" userId : "+userBean.getUserId()+" pswd : "+userBean.getPassword()+" role : "+userBean.getRole());
+			//System.out.println(" userId : "+userBean.getUserId()+" pswd : "+userBean.getPassword()+" role : "+userBean.getRole());
 			
 			userBean.setUserId(generateUserIdUsingSeq());
 			entityManager.persist(userBean);
@@ -130,6 +130,14 @@ public class UserDaoImpl implements IUserDao {
         String id = ""+query.getSingleResult();
         return id;
     }
+
+
+	@Override
+	public UserBean getUserById(String userId) throws IRSException {
+		
+		UserBean user = entityManager.find(UserBean.class,userId);
+		return user;
+	}
 	
 	
 }
