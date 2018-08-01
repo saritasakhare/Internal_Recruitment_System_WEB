@@ -49,6 +49,12 @@ public class RequisitionServiceImpl implements IRequisitionService
 	{
 		requisitionDao.updateStatus(requisitionId, currentStatus);
 	}
+
+	@Override
+	public RequisitionBean getRequisitionById(String requisitionId) throws IRSException {
+		
+		return requisitionDao.getRequisitionById(requisitionId);
+	}
 	
 	
 }

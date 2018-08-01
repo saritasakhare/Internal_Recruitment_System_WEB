@@ -1,5 +1,7 @@
 package com.cg.irs.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cg.irs.dao.IAssignedRequisitionDao;
+import com.cg.irs.entity.EmployeeBean;
 import com.cg.irs.entity.ProjectBean;
 import com.cg.irs.entity.RequisitionBean;
 import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
+import com.cg.irs.service.IAssignedRequisitionService;
+import com.cg.irs.service.IEmployeeService;
 import com.cg.irs.service.IRequisitionService;
 import com.cg.irs.service.RequisitionServiceImpl;
 
@@ -23,6 +29,10 @@ public class ResourceManagerController {
 
 	@Autowired
 	private IRequisitionService requisitionService;
+	@Autowired
+	private IAssignedRequisitionService assignedRequisitionService;
+	@Autowired
+	private IEmployeeService employeeService;
 	
 	@RequestMapping(value="/raiseRequisition")
 	public String getRaiseRequisitionPage(Model m)
@@ -60,9 +70,66 @@ public class ResourceManagerController {
 	}
 	
 	@RequestMapping(value="/viewAssignedRequisitions")
-	public String getvViewAssignedRequisitionsPage(Model m)
+	public String getViewAssignedRequisitionsPage(Model m)
 	{
 		m.addAttribute("requisition", new RequisitionBean());
 		return "rm/viewAssignedRequisitions";
 	}
+	
+	@RequestMapping(value="/viewAssignedRequisition")
+	public String getViewAssignedRequisitionPage(@RequestParam("requisitionId") String requisitionId, Model m)
+	{
+		
+		try {
+			
+			List<String> empIdList = assignedRequisitionService.getEmployeeIdsByRequisitionId(requisitionId);
+			List<EmployeeBean> empList = employeeService.getEmployeeListByIdList(empIdList);
+			m.addAttribute("empList",empList);
+			
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+		
+		m.addAttribute("requisitionsList", new RequisitionBean());
+		return "rm/viewAssignedRequisition";
+	}
+	
+	
+	@RequestMapping(value="/viewAllRequisitions")
+	public String viewAllRequisitions(Model m)
+	{
+		try {
+			
+			List<RequisitionBean> requisitionList = requisitionService.getAllRequisitions();
+			m.addAttribute("requisitionList",requisitionList);
+			
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+		
+		return "rm/viewAllRequisitions";
+	}
+	
+	@RequestMapping(value="/viewRequisition")
+	public String viewRequisition(@RequestParam("requisitionId") String requisitionId, Model m)
+	{
+		try {
+			
+			RequisitionBean requisition = requisitionService.getRequisitionById(requisitionId);
+			m.addAttribute("requisition",requisition);
+			
+		} catch (IRSException e) {
+			
+			e.printStackTrace();
+		} 
+		return "rm/viewRequisition";
+	}
+	
+	@RequestMapping(value="/saveAssignedRequisition")
+	public String saveAssignedRequisition(@RequestParam("requisitionId") String requisitionId, Model m)
+	{
+		 
+		return "rm/viewRequisition";
+	}
+	
 }

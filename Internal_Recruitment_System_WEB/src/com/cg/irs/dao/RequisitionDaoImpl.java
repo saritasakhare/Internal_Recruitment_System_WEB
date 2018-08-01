@@ -15,6 +15,7 @@ import com.cg.irs.exception.IRSException;
 
 @Repository("requisitionDao")
 public class RequisitionDaoImpl implements IRequisitionDao {
+	
 	@PersistenceContext
 	EntityManager entityManager;
 
@@ -138,5 +139,14 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		}
 		return requisitionBean;
 		
+	}
+
+	@Override
+	public RequisitionBean getRequisitionById(String requisitionId) throws IRSException {
+		
+		
+		RequisitionBean requisition =  entityManager.find(RequisitionBean.class, requisitionId);
+		
+		return requisition;
 	}
 }

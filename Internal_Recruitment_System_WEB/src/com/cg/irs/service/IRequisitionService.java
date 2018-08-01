@@ -18,4 +18,6 @@ public interface IRequisitionService
 	
 	//Updates current status of given requisition id 
 	public void updateStatus(String requisitionId,String currentStatus) throws IRSException;
+	
+	public RequisitionBean getRequisitionById(String requisitionId) throws IRSException;
 }

@@ -47,6 +47,7 @@ public class RequisitionBean implements Serializable{
 	private Date dateCreated;
 	
 	@Column(name="date_closed")
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateClosed;
 	

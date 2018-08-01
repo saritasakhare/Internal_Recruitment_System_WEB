@@ -89,6 +89,7 @@ public class EmployeeDaoImpl implements IEmployeeDao
 			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable fetch employee records");
 		}
+		
 		return employees;
 	}
 

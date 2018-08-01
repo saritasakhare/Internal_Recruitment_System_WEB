@@ -14,4 +14,6 @@ public interface IRequisitionDao
 	public List<RequisitionBean> getSpecificRequisition(String rmId) throws IRSException;
 
 	public void updateStatus(String requisitionId,String currentStatus) throws IRSException;
+	
+	public RequisitionBean getRequisitionById(String requisitionId) throws IRSException;
 }
