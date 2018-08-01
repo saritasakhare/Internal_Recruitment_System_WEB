@@ -41,7 +41,7 @@ insert into project(project_id,project_name,description,start_date,end_date,rm_i
  		
 /*	Select Queries	*/
 select project_id,project_name,description,rm_id from project;
-select requisition_id,RM_id,project_id,current_status,vacancy_name,skill,domain,number_required
+select requisition_id,users_id,project_id,current_status,vacancy_name,skill,domain,number_required
 from requisition;
 select * from assigned_requisition;
 

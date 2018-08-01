@@ -31,7 +31,7 @@ CREATE TABLE project
 	description VARCHAR2(20),
 	start_date TIMESTAMP,
 	end_date TIMESTAMP,
-	RM_id  VARCHAR2(15) references users(users_id)
+	users_id  VARCHAR2(15) references users(users_id)
  );
 	
 		

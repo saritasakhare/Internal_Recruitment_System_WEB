@@ -46,10 +46,8 @@ public class ProjectBean implements Serializable
 	
 	// Many to One User    RM_id  VARCHAR2(15) references users(users_id)
 	@ManyToOne
-	@JoinColumn(name="user_Id")
+	@JoinColumn(name="users_Id")
 	private UserBean userBean;
-	
-	
 	
 	// one to Many EmployeeBean 
 	@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)

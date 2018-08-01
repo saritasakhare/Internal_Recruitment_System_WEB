@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ResourceManagerExcecutiveController {
 
 	@RequestMapping(value="viewAllRequisitions")
-	public String getAllRequisitions(Model m)
+	public String getAllRequisitionsPage(Model m)
 	{
+		
 		return "rmge/viewAllRequisitions";
 	}
 	
