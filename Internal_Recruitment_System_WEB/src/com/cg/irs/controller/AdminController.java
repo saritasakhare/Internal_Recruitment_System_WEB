@@ -35,6 +35,7 @@ public class AdminController {
 		System.out.println("adding user ..");
 		
 		try {
+			
 			System.out.println("adding user ..");
 			
 			UserBean userBean = userService.addUser(user);
