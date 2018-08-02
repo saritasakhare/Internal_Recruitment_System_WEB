@@ -11,12 +11,6 @@
 </head>
 <body>
 
-	<div class="header">
-            <div class="icon"></div>
-            <div class="title">Internal Recruitment System</div>
-            <div class="desc-ln"> Recruit Employees For Projects.</div>
-        </div>
-        
         <div class="body">
             <h1>Hello From RecruitMent System User ADMIN </h1>
            <div class="error" align="center" style="color: red; font-family: sans-serif;">
@@ -47,9 +41,6 @@
         		</table>
         	</f:form>
         </div>
-        </div>
-        
-        <div class="footer"> 
         </div>
         
 </body>
