@@ -1,5 +1,6 @@
 package com.cg.irs.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -57,6 +58,8 @@ public class ResourceManagerController {
 			
 			requisition.setUserBean(user);
 			requisition.setProjectBean(project);
+			requisition.setCurrentStatus("OPEN");
+			requisition.setDateCreated(new Date());
 			
 			RequisitionBean req = requisitionService.insertRequisition(requisition);
 			
@@ -90,7 +93,6 @@ public class ResourceManagerController {
 			e.printStackTrace();
 		}
 		
-		m.addAttribute("requisitionsList", new RequisitionBean());
 		return "rm/viewAssignedRequisition";
 	}
 	

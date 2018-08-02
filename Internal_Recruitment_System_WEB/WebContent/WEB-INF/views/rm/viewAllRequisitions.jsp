@@ -21,7 +21,7 @@
 			<th>RM Id</th>
 			<th>Project Id</th>
 			<th>Status</th>
-			<th>Vacuncy Name</th>
+			<th>Vacancy Name</th>
 			<th>Skill</th>
 			<th>Domain</th>
 			<th>Required</th>

@@ -28,10 +28,12 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		{
 			//Query query = entityManager.createNativeQuery("select * from employee where skill like '"+requisitionBean.getSkill()+"' and domain like '"+requisitionBean.getDomain()+"' and project_id='RMG' and project_id NOT LIKE 'ASSIGNED'");
 			
-			Query query = entityManager.createNativeQuery("select * from employee where skill like ? and domain like ? and project_id='RMG' and project_id NOT LIKE 'ASSIGNED'");
+			Query query = entityManager.createNativeQuery("select * from employee where skill like ? and domain like ? and project_id='RMG' and project_id NOT LIKE 'ASSIGNED'",EmployeeBean.class);
 			query.setParameter(1, requisitionBean.getSkill());
 			query.setParameter(2, requisitionBean.getDomain());
+			
 			employees=query.getResultList();
+			
 			if(employees.size()==0 || employees==null)
 			{
 				throw new Exception("Employees with matching skill or domain of requisition : "+requisitionBean.getRequisitionId()+" does not exists.");
@@ -76,8 +78,11 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		{
 			for(String id : idList)
 			{
-				EmployeeBean emp = getEmployeeById(id);
-				employees.add(emp);
+				if(id!=null)
+				{
+					EmployeeBean emp = getEmployeeById(id);
+					employees.add(emp);
+				}
 			}
 			if(employees==null || employees.size()==0)
 			{

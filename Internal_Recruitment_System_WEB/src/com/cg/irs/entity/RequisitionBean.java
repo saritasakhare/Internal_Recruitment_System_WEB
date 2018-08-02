@@ -162,5 +162,12 @@ public class RequisitionBean implements Serializable{
 		this.assignedRequisitionBean = assignedRequisitionBean;
 	}*/
 
+	public RequisitionBean(String requisitionId) {
+		super();
+		this.requisitionId = requisitionId;
+	}
+
+	public RequisitionBean() {
+	}
 	
 }

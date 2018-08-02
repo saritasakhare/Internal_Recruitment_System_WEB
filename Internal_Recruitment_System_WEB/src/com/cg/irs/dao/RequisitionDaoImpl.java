@@ -70,7 +70,7 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 	public List<RequisitionBean> getAllRequisition() throws IRSException
 	{
 		List<RequisitionBean> requisitions =null;
-		Query query=entityManager.createNamedQuery("getAllRequisitions", ProjectBean.class);
+		Query query=entityManager.createNamedQuery("getAllRequisitions", RequisitionBean.class);
 	
 		try 
 		{

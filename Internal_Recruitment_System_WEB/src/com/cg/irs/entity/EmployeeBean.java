@@ -24,7 +24,6 @@ public class EmployeeBean implements Serializable{
 	@Column(name="employee_name")
 	private String employeeName;
 	
-	
 	// Many to One Project  project_id VARCHAR2(10) references project(project_id),
 	@ManyToOne
 	@JoinColumn(name="project_id")
@@ -90,6 +89,13 @@ public class EmployeeBean implements Serializable{
 
 	public void setYears(int years) {
 		this.years = years;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeBean [employeeId=" + employeeId + ", employeeName="
+				+ employeeName + ", projectBean=" + projectBean + ", skill="
+				+ skill + ", domain=" + domain + ", years=" + years + "]";
 	}
 
 	/*public Set<AssignedRequisitionBean> getAssignedRequisitionBean() {

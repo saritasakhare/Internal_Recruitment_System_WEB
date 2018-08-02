@@ -9,6 +9,8 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cg.irs.entity.AssignedRequisitionBean;
+import com.cg.irs.entity.EmployeeBean;
+import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
 
 @Repository("assignedRequisitionDao")
@@ -39,18 +41,18 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 	@Override
 	public String insertAssignedRequisition(AssignedRequisitionBean assignedRequisitionBean) throws IRSException 
 	{
-		String id=null;
+		int id=0;
 		try 
-		{
+		{	
 			entityManager.persist(assignedRequisitionBean);
-			id=assignedRequisitionBean.getEmployeeBean().getEmployeeId();
+			id=assignedRequisitionBean.getAssignedReqId();
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 			throw new IRSException("Unable to add Assigned Requisition");
 		}
-		return id;
+		return ""+id;
 	}
 
 	@SuppressWarnings("unchecked")
