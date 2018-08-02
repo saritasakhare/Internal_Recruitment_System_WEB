@@ -161,6 +161,7 @@ public class ResourceManagerController {
 				}
 				
 				requisitionService.updateStatus(requisitionId, "CLOSED");
+				m.addAttribute("requisition",requisition);
 				
 				System.out.print("** Requisition Processed Successfully. **");
 		}catch(IRSException e)

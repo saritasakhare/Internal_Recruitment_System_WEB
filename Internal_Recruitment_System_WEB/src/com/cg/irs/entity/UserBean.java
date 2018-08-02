@@ -79,7 +79,6 @@ public class UserBean implements Serializable
 	@Column(name="role")
 	private String role;
 
-	
 	// One to Many in  ProjectBean  
 	@OneToMany(mappedBy="userBean",cascade=CascadeType.ALL)
 	Set<ProjectBean> projectBean = new HashSet<>(); 
@@ -130,6 +129,5 @@ public class UserBean implements Serializable
 	public void setProjectBean(Set<ProjectBean> projectBean) {
 		this.projectBean = projectBean;
 	}
-	
 	
 }
