@@ -45,15 +45,15 @@ public class ResourceManagerController {
 	}
 	
 	@RequestMapping(value="/processRaiseRequisition")
-	public String processRaiseRequisition( @Valid @ModelAttribute("requisition") RequisitionBean requisition,BindingResult rs, Model m)
+	public String processRaiseRequisition(@RequestParam("projectId") String projectId, @Valid @ModelAttribute("requisition") RequisitionBean requisition,BindingResult rs, Model m)
 	{
 		
 		try {
 			ProjectBean project = new ProjectBean();
-			project.setProjectId("101");
+			project.setProjectId(projectId);
 			
 			UserBean user = new UserBean();
-			user.setUserId("102");
+			user.setUserId("103");
 			
 			requisition.setUserBean(user);
 			requisition.setProjectBean(project);
@@ -64,9 +64,15 @@ public class ResourceManagerController {
 			
 			m.addAttribute("msg","SuccessFully Raised requisition with Id : "+req.getRequisitionId());
 			
-		} catch (IRSException e) {
+		}
+		catch (IRSException e ) {
+			m.addAttribute("msg",e.getMessage());
 			e.printStackTrace();
 		}
+		catch (Exception e ) {
+			m.addAttribute("msg","Unable to Raise reqisition");
+			e.printStackTrace();
+		} 
 		
 		return "rm/raiseRequisition";
 	}

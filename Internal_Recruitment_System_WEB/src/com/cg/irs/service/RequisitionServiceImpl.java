@@ -29,7 +29,7 @@ public class RequisitionServiceImpl implements IRequisitionService
 	@Override
 	public RequisitionBean insertRequisition(RequisitionBean requisitionBean)throws IRSException 
 	{
-		return requisitionDao.insertRequisition(requisitionBean);
+			return requisitionDao.insertRequisition(requisitionBean);
 	}
 
 	@Override

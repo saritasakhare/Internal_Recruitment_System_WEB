@@ -21,8 +21,7 @@
 			<tr>
 				<td> <label>project Id</label> </td>
 				<td>
-					 <sf:input path="projectBean.projectId"/>
-					 <sf:errors path="projectBean.projectId"/>
+					 <input type="text" name="projectId">
 				 </td>
 			</tr>
 			<tr>
