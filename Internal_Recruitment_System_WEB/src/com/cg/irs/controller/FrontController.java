@@ -14,14 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cg.irs.entity.UserBean;
+import com.cg.irs.exception.IRSException;
+import com.cg.irs.service.IUserService;
+import com.cg.irs.service.UserServiceImpl;
 
-/**
- * Servlet Filter implementation class FirstController
- */
 @WebFilter("/FirstController")
 public class FrontController implements Filter {
+	
+	@Autowired
+	private IUserService userService;
+	
 	
     public FrontController() {
     }
@@ -33,7 +41,71 @@ public class FrontController implements Filter {
 	
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res =(HttpServletResponse) response;
-		String path = "Error";
+		String path = req.getServletPath();
+		
+		System.out.print("\n--filter in for - "+path);
+		if(path.equals("/processLogin.mvc"))
+		{
+			chain.doFilter(request, response);
+		}else
+			if(!(path.endsWith(".jsp")||path.endsWith(".mvc")))
+				chain.doFilter(request, response);
+		
+		String userId = req.getParameter("userId");
+		String password = req.getParameter("password");
+	
+		System.out.print("\n "+userId+" "+password);
+		
+		HttpSession session = req.getSession(false);
+		
+		/*if(session.isNew())
+		{
+			System.out.println("new session");
+		}*/
+		if(session!=null)
+		{
+			System.out.print("\nsession not null");
+			UserBean user = (UserBean) session.getAttribute("user");
+			System.out.println("user : "+user);
+			if(user!=null)
+			{
+				chain.doFilter(req, res);
+				return;
+			}
+			if(userId!=null&&password!=null)
+			{
+				System.out.println("user not null and got credinals");
+				
+				 user = validateCredinals(userId, password);
+				 
+				if(user!=null)
+				{
+					System.out.print("\nuser verified forworing to home");
+					session = req.getSession(true);
+					session.setAttribute("user",user);
+					req.getRequestDispatcher("home.mvc").forward(req, res);
+				}
+			}
+			
+		}else if(userId!=null&&password!=null)
+		{
+			System.out.println("user null bt got credinals");
+			
+			UserBean user = validateCredinals(userId, password);
+			if(user!=null)
+			{
+				System.out.print("\nuser verified forworing to home");
+				session = req.getSession(true);
+				session.setAttribute("user",user);
+				req.getRequestDispatcher("home.mvc").forward(req, res);
+			}
+		}else
+		{
+			System.out.print("\nuser null also credinals");
+			req.getRequestDispatcher("login.mvc").forward(request, response);
+		}
+		
+		/*String path = "Error";
 		String key = null;
 		key = req.getServletPath();
 		System.out.println("Filter is Called"+key);
@@ -45,12 +117,32 @@ public class FrontController implements Filter {
 			break;			
 		default:
 			System.out.println("case 2");
-			HttpSession session =req.getSession(false);		
+		 		
 			if(session==null)
-				path="tologin.mvc";
+				path="login.mvc";
 			break;
+		}*/
+		
+		//req.getRequestDispatcher(path).forward(request, response);
+		//res.sendRedirect(path);
+		
+		System.out.print("\nout filter -- for - "+req.getServletPath());
+	}
+	
+	private UserBean validateCredinals(String userId,String password)
+	{
+		try {
+			
+			System.out.print("\ngetting user from database ");
+			
+			UserBean user = userService.login(new UserBean(userId,password));
+			
+			System.out.println("got user : "+user);
+			
+			return user;
+		} catch (Exception e) {
+			return null;
 		}
-		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 	

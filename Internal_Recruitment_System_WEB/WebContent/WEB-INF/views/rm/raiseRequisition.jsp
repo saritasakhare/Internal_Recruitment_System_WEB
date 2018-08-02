@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/form.css" >
 </head>
 <body>
 	<h1>Raise Requisition</h1>

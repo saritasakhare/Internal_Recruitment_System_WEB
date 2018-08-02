@@ -1,6 +1,7 @@
 package com.cg.irs.controller;
 
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,16 +117,28 @@ public class IRSController
 		return "rmge/resourceManagerExecutiveView";
 	}
 	
-	@RequestMapping(value="login.mvc",method=RequestMethod.POST)
-	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,Model model)
+	@RequestMapping(value="/login.mvc")
+	public String getLogInPage(Model m)
 	{
+		return "login";
+	}
+	@RequestMapping(value="processLogin.mvc",method=RequestMethod.GET)
+	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,HttpSession session,Model model)
+	{
+		System.out.print("\nvallidating user ");
+		
 		String redirection ="";
 		try{
 			UserBean userBean = new UserBean();
 			userBean.setPassword(password);
 			userBean.setUserId(userId);			
 			userBean = userService.login(userBean);
-			redirection = userBean.getRole()+"HomePage";
+			
+			session.setAttribute("user",userBean);
+			
+			String role = userBean.getRole().toLowerCase();
+			
+			redirection = role+"/"+role+"View";
 		}
 		catch(IRSException e)
 		{
@@ -137,11 +150,19 @@ public class IRSController
 			model.addAttribute("msg", e.getMessage());
 			return "Error";
 		}	
-		if(redirection.equals("ADMINHomePage"))
-		{
-			model.addAttribute("user", new UserBean());
-		}
+		
 		return redirection;
+	}
+	
+	@RequestMapping(value="logout.mvc")
+	public String logout(HttpSession session,Model model)
+	{
+		System.out.print("\nLogging Out..");
+		
+		session.setAttribute("user",null);
+		
+		return "login";
+		
 	}
 	
 	@RequestMapping(value="adduser.mvc",method=RequestMethod.POST)

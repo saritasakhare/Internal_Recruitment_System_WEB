@@ -19,9 +19,14 @@ public class UserDaoImpl implements IUserDao {
 	
 	@Override
 	public UserBean getUserDetail(UserBean userBean) throws IRSException {
+		
 		UserBean user=null;
 		try{
+			
+			System.out.print("\nGetting user for user : "+userBean);
+			
 			user=entityManager.find(UserBean.class,userBean.getUserId());
+			
 			if(user==null)
 			{
 				throw new IRSException("User Doesn't Exist");
@@ -31,6 +36,9 @@ public class UserDaoImpl implements IUserDao {
 		{
 			throw new IRSException(e.getMessage());
 		}
+		
+		System.out.print("\nReturing User : "+user);
+		
 		return user;
 	}
 

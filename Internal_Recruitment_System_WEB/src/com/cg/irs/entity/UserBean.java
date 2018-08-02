@@ -37,6 +37,38 @@ public class UserBean implements Serializable
 	}
 	
 	
+
+
+	public UserBean(String userId, String password, String role,
+			Set<ProjectBean> projectBean, Set<RequisitionBean> requisitionBean) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.role = role;
+		this.projectBean = projectBean;
+		this.requisitionBean = requisitionBean;
+	}
+
+	
+	public UserBean(String userId, String password) {
+		super();
+		this.userId = userId;
+		this.password = password;
+	}
+
+
+	public Set<RequisitionBean> getRequisitionBean() {
+		return requisitionBean;
+	}
+
+
+	public void setRequisitionBean(Set<RequisitionBean> requisitionBean) {
+		this.requisitionBean = requisitionBean;
+	}
+
+
+
+
 	@Id
 	@Column(name="users_id")
 	private String userId;

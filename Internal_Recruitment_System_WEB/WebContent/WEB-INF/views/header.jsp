@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,5 +16,12 @@
             <div class="title">Internal Recruitment System</div>
             <div class="desc-ln"> Recruit Employees For Projects.</div>
      </div>
+     <c:if test="${user!=null }">
+     	<div id="logout-div">
+     		<label> ${ user.userId} </label> <br/>
+     		<label> ${ user.role} </label> <br/>
+     		 <a href="/Internal_Recruitment_System_WEB/logout.mvc"> LogOut </a>
+     	</div>
+     </c:if>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.cg.irs.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,16 +46,17 @@ public class ResourceManagerController {
 	}
 	
 	@RequestMapping(value="/processRaiseRequisition")
-	public String processRaiseRequisition(@RequestParam("projectId") String projectId, @Valid @ModelAttribute("requisition") RequisitionBean requisition,BindingResult rs, Model m)
+	public String processRaiseRequisition(@RequestParam("projectId") String projectId, @Valid @ModelAttribute("requisition") RequisitionBean requisition,BindingResult rs,HttpSession session, Model m)
 	{
 		
 		try {
 			ProjectBean project = new ProjectBean();
 			project.setProjectId(projectId);
-			
+			UserBean user =  (UserBean)session.getAttribute("user");
+			/*
 			UserBean user = new UserBean();
 			user.setUserId("103");
-			
+			*/
 			requisition.setUserBean(user);
 			requisition.setProjectBean(project);
 			requisition.setCurrentStatus("OPEN");
