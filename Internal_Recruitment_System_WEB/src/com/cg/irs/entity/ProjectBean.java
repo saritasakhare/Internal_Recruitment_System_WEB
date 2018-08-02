@@ -50,12 +50,13 @@ public class ProjectBean implements Serializable
 	private UserBean userBean;
 	
 	// one to Many EmployeeBean 
-	/*@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)
-	Set<EmployeeBean> employeeBean = new HashSet<>();*/
+	@OneToMany(mappedBy="projectBean",cascade=CascadeType.REMOVE)
+	Set<EmployeeBean> employeeBean = new HashSet<>();
+	
 	
 	//One To Many Requisition Bean
-	/*@OneToMany(mappedBy="projectBean",cascade=CascadeType.ALL)
-	Set<RequisitionBean> requisitionBean = new HashSet<>();*/
+	@OneToMany(mappedBy="projectBean",cascade=CascadeType.REMOVE)
+	Set<RequisitionBean> requisitionBean = new HashSet<>();
 
 	public String getProjectId() {
 		return projectId;
@@ -104,24 +105,4 @@ public class ProjectBean implements Serializable
 	public void setUserBean(UserBean userBean) {
 		this.userBean = userBean;
 	}
-
-	/*public Set<EmployeeBean> getEmployeeBean() {
-		return employeeBean;
-	}
-
-	public void setEmployeeBean(Set<EmployeeBean> employeeBean) {
-		this.employeeBean = employeeBean;
-	}
-
-	public Set<RequisitionBean> getRequisitionBean() {
-		return requisitionBean;
-	}
-
-	public void setRequisitionBean(Set<RequisitionBean> requisitionBean) {
-		this.requisitionBean = requisitionBean;
-	}*/
-
-	
-	
-	
 }

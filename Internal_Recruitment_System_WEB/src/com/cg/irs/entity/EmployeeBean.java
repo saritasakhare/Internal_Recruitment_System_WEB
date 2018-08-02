@@ -24,6 +24,7 @@ public class EmployeeBean implements Serializable{
 	@Column(name="employee_name")
 	private String employeeName;
 	
+	
 	// Many to One Project  project_id VARCHAR2(10) references project(project_id),
 	@ManyToOne
 	@JoinColumn(name="project_id")
@@ -38,10 +39,15 @@ public class EmployeeBean implements Serializable{
 	@Column(name="experience_yrs")
 	private int years;
 
-	//One to Many AssingedRequestion
-	//Wrong 
-	/*@OneToMany(mappedBy="employeeBean")
-	Set<AssignedRequisitionBean> assignedRequisitionBean = new HashSet<>();*/
+	
+	
+	public ProjectBean getProjectBean() {
+		return projectBean;
+	}
+
+	public void setProjectBean(ProjectBean projectBean) {
+		this.projectBean = projectBean;
+	}
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -57,14 +63,6 @@ public class EmployeeBean implements Serializable{
 
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
-	}
-
-	public ProjectBean getProjectBean() {
-		return projectBean;
-	}
-
-	public void setProjectBean(ProjectBean projectBean) {
-		this.projectBean = projectBean;
 	}
 
 	public String getSkill() {
@@ -89,25 +87,5 @@ public class EmployeeBean implements Serializable{
 
 	public void setYears(int years) {
 		this.years = years;
-	}
-
-	@Override
-	public String toString() {
-		return "EmployeeBean [employeeId=" + employeeId + ", employeeName="
-				+ employeeName + ", projectBean=" + projectBean + ", skill="
-				+ skill + ", domain=" + domain + ", years=" + years + "]";
-	}
-
-	/*public Set<AssignedRequisitionBean> getAssignedRequisitionBean() {
-		return assignedRequisitionBean;
-	}
-
-	public void setAssignedRequisitionBean(
-			Set<AssignedRequisitionBean> assignedRequisitionBean) {
-		this.assignedRequisitionBean = assignedRequisitionBean;
-	}
-	*/
-	
-	
-	
+	}	
 }

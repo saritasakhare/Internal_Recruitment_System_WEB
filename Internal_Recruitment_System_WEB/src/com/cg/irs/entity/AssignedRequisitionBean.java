@@ -1,47 +1,46 @@
 package com.cg.irs.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name="assigned_Requisition")
-@NamedQueries(
-		value={@NamedQuery(name="getSpecificAssignedRequisition",query="from AssignedRequisitionBean assignedRequisitionBean where assignedRequisitionBean.userId=:rmId")})
-public class AssignedRequisitionBean implements Serializable{
+/*@NamedQueries(
+		value={@NamedQuery(name="getSpecificAssignedRequisition",query="from AssignedRequisitionBean assignedRequisitionBean where assignedRequisitionBean.userBean.userId=:rmId")})
+*/public class AssignedRequisitionBean implements Serializable{
 
+	
 	@Id
 	@Column(name="assigned_req_Id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	int assignedReqId;
 	
-	/*@ManyToOne
-	@JoinColumn(name="rmge_Id")*/
 	@Column(name="rmge_Id")
 	String userId;
 	
-	/*@EmbeddedId
-	@ManyToOne
-	@JoinColumn(name="employee_Id")*/
-	@Column(name="employee_Id")
+	@Column(name="employee_id")
 	String employeeId;
 
-    /*@ManyToOne
-    @JoinColumn(name="requisition_Id")*/
     @Column(name="requisition_Id")
-	String requisitionId;
+    String requisitionId;
+
+
+
+
 
 	public int getAssignedReqId() {
 		return assignedReqId;
@@ -74,7 +73,8 @@ public class AssignedRequisitionBean implements Serializable{
 	public void setRequisitionId(String requisitionId) {
 		this.requisitionId = requisitionId;
 	}
+	
 
-    
+
     
 }

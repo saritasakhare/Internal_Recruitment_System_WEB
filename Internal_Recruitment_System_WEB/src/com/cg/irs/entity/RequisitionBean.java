@@ -37,7 +37,7 @@ public class RequisitionBean implements Serializable{
 	UserBean userBean;
 	
  	//Many to One  ProjectBeans  project_id VARCHAR2(10) references project(project_id),
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.DETACH})
 	@JoinColumn(name="project_Id")
 	ProjectBean projectBean;
 	
@@ -47,7 +47,6 @@ public class RequisitionBean implements Serializable{
 	private Date dateCreated;
 	
 	@Column(name="date_closed")
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateClosed;
 	
@@ -66,10 +65,6 @@ public class RequisitionBean implements Serializable{
 	
 	@Column(name="number_required")
 	private int numberRequired;
-	
-	//One to Many Assigned Requisition
-	/*@OneToMany(mappedBy="requisitionBean",cascade=CascadeType.ALL)
-	Set<AssignedRequisitionBean> assignedRequisitionBean = new HashSet<>();*/
 
 	public String getRequisitionId() {
 		return requisitionId;
@@ -152,8 +147,8 @@ public class RequisitionBean implements Serializable{
 	public void setNumberRequired(int numberRequired) {
 		this.numberRequired = numberRequired;
 	}
-/*
-	public Set<AssignedRequisitionBean> getAssignedRequisitionBean() {
+
+/*	public Set<AssignedRequisitionBean> getAssignedRequisitionBean() {
 		return assignedRequisitionBean;
 	}
 
@@ -162,12 +157,5 @@ public class RequisitionBean implements Serializable{
 		this.assignedRequisitionBean = assignedRequisitionBean;
 	}*/
 
-	public RequisitionBean(String requisitionId) {
-		super();
-		this.requisitionId = requisitionId;
-	}
-
-	public RequisitionBean() {
-	}
 	
 }
