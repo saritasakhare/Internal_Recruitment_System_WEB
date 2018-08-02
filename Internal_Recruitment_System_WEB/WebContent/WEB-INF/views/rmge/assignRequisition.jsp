@@ -30,7 +30,7 @@
 				</tr>
 			<c:forEach var="emp" items="${employeeList}" varStatus="loop">
 				<tr>
-					<td> <input type="checkbox" name="list[loop.index]" value="${emp.employeeId}"> </td>
+					<td> <input type="checkbox" name="list[${loop.index}]" value="${emp.employeeId}"> </td>
 					<td>${emp.employeeId}</td>
 					<td>${emp.employeeName}</td>
 					<td>${emp.projectBean.projectId}</td>

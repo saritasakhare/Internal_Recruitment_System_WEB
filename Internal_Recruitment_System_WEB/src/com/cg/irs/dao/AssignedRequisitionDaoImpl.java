@@ -62,7 +62,9 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		List<String> empIds=null;
 		try 
 		{
-			Query query = entityManager.createNativeQuery("select employee_id from assigned_requisition where requisition_id="+requisitionId);
+			Query query = entityManager.createNativeQuery("select employee_id from assigned_requisition where requisition_id=:requisitionId");
+			query.setParameter("requisitionId",requisitionId);
+			
 			empIds=query.getResultList();
 			if(empIds==null || empIds.size()==0)
 			{
@@ -74,6 +76,7 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable fetch employee ID's for requisition Id : "+requisitionId);
 		}
+		System.out.println("idList : "+empIds.size());
 		return empIds;
 	}
 

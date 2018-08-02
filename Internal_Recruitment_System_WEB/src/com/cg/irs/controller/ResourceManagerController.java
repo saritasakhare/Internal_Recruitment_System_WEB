@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cg.irs.dao.IAssignedRequisitionDao;
 import com.cg.irs.entity.EmployeeBean;
+import com.cg.irs.entity.IdList;
 import com.cg.irs.entity.ProjectBean;
 import com.cg.irs.entity.RequisitionBean;
 import com.cg.irs.entity.UserBean;
@@ -22,7 +22,6 @@ import com.cg.irs.exception.IRSException;
 import com.cg.irs.service.IAssignedRequisitionService;
 import com.cg.irs.service.IEmployeeService;
 import com.cg.irs.service.IRequisitionService;
-import com.cg.irs.service.RequisitionServiceImpl;
 
 @Controller
 @RequestMapping(value="/rm")
@@ -86,8 +85,16 @@ public class ResourceManagerController {
 		try {
 			
 			List<String> empIdList = assignedRequisitionService.getEmployeeIdsByRequisitionId(requisitionId);
+			
+			System.out.println("\nempIdList : "+empIdList);
+			
 			List<EmployeeBean> empList = employeeService.getEmployeeListByIdList(empIdList);
+			for(EmployeeBean emp:empList)
+				System.out.println("\nemp : "+emp);
+			
 			m.addAttribute("empList",empList);
+			m.addAttribute("idList",new IdList());
+			m.addAttribute("requisitionId", requisitionId);
 			
 		} catch (IRSException e) {
 			e.printStackTrace();
@@ -119,6 +126,7 @@ public class ResourceManagerController {
 			
 			RequisitionBean requisition = requisitionService.getRequisitionById(requisitionId);
 			m.addAttribute("requisition",requisition);
+			m.addAttribute("requisitionId",requisition.getRequisitionId());
 			
 		} catch (IRSException e) {
 			
@@ -128,9 +136,30 @@ public class ResourceManagerController {
 	}
 	
 	@RequestMapping(value="/saveAssignedRequisition")
-	public String saveAssignedRequisition(@RequestParam("requisitionId") String requisitionId, Model m)
+	public String saveAssignedRequisition(@RequestParam("requisitionId") String requisitionId,@ModelAttribute("idList") IdList idList,  Model m)
 	{
-		 
+		try
+		{
+				RequisitionBean requisition  = requisitionService.getRequisitionById(requisitionId);
+				System.out.print("\nSubmitting...");	
+				List<EmployeeBean> selectedList = employeeService.getEmployeeListByIdList(idList.getList());
+				for(EmployeeBean emp : selectedList)
+				{
+					
+					employeeService.updateProjectId(emp.getEmployeeId(),requisition.getProjectBean().getProjectId());
+					
+					assignedRequisitionService.deleteAssignedRequitision(requisitionId,emp.getEmployeeId());
+					System.out.print("\n"+emp.getEmployeeId()+" Added. ");
+				}
+				
+				requisitionService.updateStatus(requisitionId, "CLOSED");
+				
+				System.out.print("** Requisition Processed Successfully. **");
+		}catch(IRSException e)
+		{
+			e.printStackTrace();
+		}
+		
 		return "rm/viewRequisition";
 	}
 	

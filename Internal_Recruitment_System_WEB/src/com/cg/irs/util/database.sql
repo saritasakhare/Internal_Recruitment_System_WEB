@@ -66,7 +66,7 @@ CREATE TABLE employee
  		assigned_req_Id number primary key,
 	 RMGE_id VARCHAR2(10) references users(users_id),
 	 employee_id VARCHAR2(10) references employee(employee_id),
-	 requisition_id VARCHAR2(10) references Requisition(requisition_id),
+	 requisition_id VARCHAR2(10) references Requisition(requisition_id)
  );
 
  /* squence for generating ID	*/

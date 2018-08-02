@@ -11,25 +11,27 @@
 </head>
 <body>
 	
-	<sf:form action="saveAssignedRequisition.mvc" modelAttribute="">
+	<sf:form action="saveAssignedRequisition.mvc" modelAttribute="idList">
 		<table>
 			<tr>
+				<th></th>
 				<th>Employee Id</th>
 				<th>Name</th>
 				<th>Skill</th>
 				<th>Domain</th>
 			</tr>
-			<c:forEach var="emp" items="empList">
+			<c:forEach var="emp" items="${empList}" varStatus="loop">
 				<tr>
+				<td> <input type="checkbox" name="list[${loop.index}]" value="${emp.employeeId}"> </td>
 					<td>${emp.employeeId}</td>
 					<td>${emp.employeeName }</td>
 					<td>${emp.skill}</td>
-					<td>${emp.domian}</td>
-					<td> <input type="checkbox" name="" value="" > </td>
+					<td>${emp.domain}</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="2">
+					<input type="hidden" name="requisitionId" value="${requisitionId}" > 
 					<input type="submit" value="Save Requisition">
 				</td>
 			</tr>

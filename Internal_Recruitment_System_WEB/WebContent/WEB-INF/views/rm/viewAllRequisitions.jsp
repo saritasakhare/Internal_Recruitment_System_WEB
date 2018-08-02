@@ -29,8 +29,8 @@
 		<c:forEach var="req" items="${requisitionList}">
 			<tr>
 				<td>${req.requisitionId}</td>
-				<td>${req.userBean}</td>
-				<td>${req.projectBean}</td>
+				<td>${req.userBean.userId}</td>
+				<td>${req.projectBean.projectId}</td>
 				<td>${req.currentStatus}</td>
 				<td>${req.vacancyName}</td>
 				<td>${req.skill}</td>

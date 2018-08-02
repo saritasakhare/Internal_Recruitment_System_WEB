@@ -100,7 +100,7 @@ public class ResourceManagerExcecutiveController {
 		try {
 			List<EmployeeBean> selectedList = employeeService.getEmployeeListByIdList(idList.getList());
 			
-			//System.out.print("\nSubmitting...");
+			System.out.print("\nSubmitting....");
 			for(EmployeeBean emp : selectedList)
 			{
 				
@@ -108,6 +108,8 @@ public class ResourceManagerExcecutiveController {
 				assigned.setEmployeeId(emp.getEmployeeId());
 				assigned.setRequisitionId(requisitionId);
 				assigned.setUserId("101");
+				
+				System.out.println("\ninserting assigned requisition");
 				
 				assignedRequisitionService.insertAssignedRequisition(assigned);
 				employeeService.updateProjectId(emp.getEmployeeId(),"ASSIGNED");

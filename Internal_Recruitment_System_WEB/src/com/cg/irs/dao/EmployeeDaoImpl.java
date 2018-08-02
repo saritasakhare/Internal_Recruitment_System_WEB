@@ -53,14 +53,18 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		int result=0;
 		try 
 		{
-			Query query = entityManager.createNativeQuery("update employee set project_id=? where employee_id=?");
-			query.setParameter(1, projectId);
-			query.setParameter(2, empId);
+			System.out.println("updating emp : "+empId+" to projId : "+projectId);
+			
+			Query query = entityManager.createNativeQuery("update employee set project_id=:pId where employee_id=:eId");
+			query.setParameter("pId", projectId);
+			query.setParameter("eId", empId);
+			
 			result=query.executeUpdate();
 			if(result==0)
 			{
 				throw new Exception("Updation of project id failed");
 			}
+			System.out.println("\nEmployee Id Updated");
 		}
 		catch (Exception e)
 		{
@@ -80,7 +84,10 @@ public class EmployeeDaoImpl implements IEmployeeDao
 			{
 				if(id!=null)
 				{
-					EmployeeBean emp = getEmployeeById(id);
+					Query query = entityManager.createQuery("from EmployeeBean emp where emp.employeeId=:empId",EmployeeBean.class);
+					query.setParameter("empId",id);
+					
+					EmployeeBean emp = (EmployeeBean) query.getSingleResult();
 					employees.add(emp);
 				}
 			}
@@ -94,6 +101,8 @@ public class EmployeeDaoImpl implements IEmployeeDao
 			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable fetch employee records");
 		}
+		System.out.println("returning employee list : "+employees.size());
+		entityManager.flush();
 		
 		return employees;
 	}
@@ -105,6 +114,7 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		try 
 		{
 			employee=entityManager.find(EmployeeBean.class, empId);
+			entityManager.flush();
 			if(employee==null)
 			{
 				throw new Exception("Employee records not found");
