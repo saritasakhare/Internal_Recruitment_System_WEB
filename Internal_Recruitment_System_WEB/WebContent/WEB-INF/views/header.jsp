@@ -12,7 +12,7 @@
 </head>
 <body>
 	 <div class="header">
-            <div class="icon"></div>
+            <div class="icon"> <!-- <a href="/Internal_Recruitment_System_WEB/home.mvc"> <img src="../img/img6.jpg" /> </a> --> </div>
             <div class="title">Internal Recruitment System</div>
             <div class="desc-ln"> Recruit Employees For Projects.</div>
      </div>

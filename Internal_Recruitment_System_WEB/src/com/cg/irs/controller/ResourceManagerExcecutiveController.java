@@ -5,6 +5,9 @@ import java.util.List;
 
 
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,4 +129,26 @@ public class ResourceManagerExcecutiveController {
 		
 		return "rmge/assignRequisition";
 	}
+	
+	/*
+  	Report link Mapping 
+ */
+	
+	@RequestMapping(value="/report")
+	public String getReportpage(HttpSession session,Model m)
+	{
+		try {
+			
+			UserBean user = (UserBean)session.getAttribute("user");
+			
+			List<RequisitionBean> requisitionList = requisitionService.getReportById(user.getUserId());
+			m.addAttribute("requisitionList",requisitionList);
+			
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+	
+		return "rmge/report";
+	}
+
 }

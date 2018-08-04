@@ -62,6 +62,7 @@ public class FrontController implements Filter {
 		{
 			System.out.println("new session");
 		}*/
+		
 		if(session!=null)
 		{
 			System.out.print("\nsession not null");

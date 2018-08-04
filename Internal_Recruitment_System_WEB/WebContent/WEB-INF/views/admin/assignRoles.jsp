@@ -25,14 +25,15 @@
         		<table cellspacing="6" cellpadding="6">
         		<tr>
         			<th> User Id : </th>
-        			<td><f:input path="userId"/></td>
+        			<td><f:input path="userId" disabled="true"/></td>
+        			
         		</tr>
         		<tr>
         			<th> Role </th>
         			<td>
         				<f:select path="role">
         					<f:option value="ADMIN"/>
-        					<f:option value="ROLE"/>
+        					<f:option value="RM"/>
         					<f:option value="RMGE"/>
         				</f:select>
         				<f:errors path="role" />

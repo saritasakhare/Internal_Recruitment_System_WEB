@@ -130,4 +130,50 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		
 		return requisition;
 	}
+
+	@Override
+	public List<RequisitionBean> getAssignedRequisitionsById(String id)
+			throws IRSException {
+		
+		List<RequisitionBean> requisitions =null;
+		Query query=entityManager.createNamedQuery("getAssignedRequisitions", RequisitionBean.class);
+	
+		try 
+		{
+			query.setParameter("userId", id);
+			query.setParameter("status","ASSIGNED");
+			
+			requisitions=query.getResultList();
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			throw new IRSException("Unable to fetch Requisitions No requisitions found ");
+		}
+		return requisitions;
+		
+	}
+
+	@Override
+	public List<RequisitionBean> getReportById(String rmId) throws IRSException {
+
+		List<RequisitionBean> requisitions =null;
+		Query query=entityManager.createQuery("from RequisitionBean requisition where requisition.userBean.userId=:userId", RequisitionBean.class);
+		
+	
+		try 
+		{
+			query.setParameter("userId", rmId);
+			
+			requisitions=query.getResultList();
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			throw new IRSException("Unable to fetch Requisitions No requisitions found ");
+		}
+		return requisitions;
+		
+	}
+
 }

@@ -3,6 +3,7 @@ package com.cg.irs.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.jms.Session;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -80,10 +81,21 @@ public class ResourceManagerController {
 	}
 	
 	@RequestMapping(value="/viewAssignedRequisitions")
-	public String getViewAssignedRequisitionsPage(Model m)
+	public String getViewAssignedRequisitionsPage(HttpSession session,Model m)
 	{
-		m.addAttribute("requisition", new RequisitionBean());
-		return "rm/viewAssignedRequisitions";
+		
+		try {
+			
+			UserBean user = (UserBean)session.getAttribute("user");
+			
+			List<RequisitionBean> requisitionList = requisitionService.getAssignedRequisitionsById(user.getUserId());
+			m.addAttribute("requisitionList",requisitionList);
+			
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+
+		return "rm/viewRequisitionsList";
 	}
 	
 	@RequestMapping(value="/viewAssignedRequisition")
@@ -124,7 +136,7 @@ public class ResourceManagerController {
 			e.printStackTrace();
 		}
 		
-		return "rm/viewAllRequisitions";
+		return "rm/viewRequisitionsList";
 	}
 	
 	@RequestMapping(value="/viewRequisition")
@@ -172,4 +184,24 @@ public class ResourceManagerController {
 		return "rm/viewRequisition";
 	}
 	
+	/*
+	  	Report link Mapping 
+	 */
+	
+	@RequestMapping(value="/report")
+	public String getReportpage(HttpSession session,Model m)
+	{
+		try {
+			
+			UserBean user = (UserBean)session.getAttribute("user");
+			
+			List<RequisitionBean> requisitionList = requisitionService.getReportById(user.getUserId());
+			m.addAttribute("requisitionList",requisitionList);
+			
+		} catch (IRSException e) {
+			e.printStackTrace();
+		}
+
+		return "rm/report";
+	}
 }

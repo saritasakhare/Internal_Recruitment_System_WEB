@@ -10,6 +10,6 @@
 	<h1><a href="rm/raiseRequisition.mvc" > Raise a Requisition </a></h1>
 	<h1><a href="rm/viewAllRequisitions.mvc" > View All Requistions </a></h1>
 	<h1><a href="rm/viewAssignedRequisitions.mvc" > View Suggested Requistions Resources </a></h1>
-	<h1> <a href="logout.mvc" > Logout </a> </h1>
+	<h1> <a href="rm/report.mvc" > Generate Report </a> </h1>
 </body>
 </html>

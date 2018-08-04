@@ -16,7 +16,7 @@
 	<c:if test="${msg!=null}">
 		${msg}
 	</c:if>
-	<table>
+	<table cellpadding="6" cellspacing="0">
 		<tr>
 			<th>Req. Id</th>
 			<th>RM Id</th>
@@ -26,6 +26,7 @@
 			<th>Skill</th>
 			<th>Domain</th>
 			<th>Required</th>
+			<th></th>
 		</tr>
 		<c:forEach var="req" items="${requisitionList}">
 			<tr>

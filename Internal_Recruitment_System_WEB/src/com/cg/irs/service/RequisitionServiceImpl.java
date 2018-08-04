@@ -55,6 +55,17 @@ public class RequisitionServiceImpl implements IRequisitionService
 		
 		return requisitionDao.getRequisitionById(requisitionId);
 	}
+
+	@Override
+	public List<RequisitionBean> getAssignedRequisitionsById(String id)
+			throws IRSException {
+		return requisitionDao.getAssignedRequisitionsById(id);
+	}
+
+	@Override
+	public List<RequisitionBean> getReportById(String rmId) throws IRSException {
+		return requisitionDao.getReportById(rmId);
+	}
 	
 	
 }

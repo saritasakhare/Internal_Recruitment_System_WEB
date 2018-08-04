@@ -91,9 +91,13 @@ public class IRSController
 	 ***************************************************/
 
 	@RequestMapping(value="/home")
-	public String getHomePage(Model m)
+	public String getHomePage(HttpSession session,Model m)
 	{
-		return "Home";
+		UserBean user = (UserBean)session.getAttribute("user");
+		String role = user.getRole().toLowerCase();
+		String redirection = role+"/"+role+"View";
+		
+		return redirection;
 	}
 	
 	@RequestMapping(value="/adminView")
@@ -129,6 +133,7 @@ public class IRSController
 		
 		String redirection ="";
 		try{
+			
 			UserBean userBean = new UserBean();
 			userBean.setPassword(password);
 			userBean.setUserId(userId);			
