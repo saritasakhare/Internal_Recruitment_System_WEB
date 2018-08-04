@@ -27,26 +27,26 @@
            
             <div class="login-panel">
                 <div class="title">
-                   <label class="title">LOG IN</label> 
+                   <label class="title" style="font-size:20px;">LOG IN</label> 
                 </div>
                 <div class="form">
                     <form action="login.mvc" method="post">
                         <table>
                             <tr>
-                                <td> <label> Enter User Name : </label> </td>
+                                <td> <label>User Name : </label> </td>
                             </tr>
                             <tr>
-                                <td> <input type="text" name="userId" /> </td>
+                                <td> <input type="text" name="userId" size="30" /> </td>
                             </tr>
                             <tr>
-                                <td> <label> Enter Password : </label> </td>
+                                <td> <label>Password : </label> </td>
                             </tr>
                             <tr>
-                                <td> <input type="password" name="password" /> </td>
+                                <td> <input type="password" name="password" size="30" /> </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="submit" value="LogIn"/>
+                                    <input type="submit" value="LogIn" size="30"/>
                                 </td>
                             </tr>
                         </table>

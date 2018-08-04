@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<center>
 
 	<h1>Assign Roles</h1>
 	
@@ -21,7 +22,7 @@
                     <div>
                     
         	<f:form  action="processAssignRoles.mvc" method="post" modelAttribute="user">
-        		<table>
+        		<table cellspacing="6" cellpadding="6">
         		<tr>
         			<th> User Id : </th>
         			<td><f:input path="userId"/></td>
@@ -44,6 +45,6 @@
         	</f:form>
         </div>
         </div>
-    
+   </center>
 </body>
 </html>

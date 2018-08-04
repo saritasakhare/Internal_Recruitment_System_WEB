@@ -27,13 +27,13 @@
                     <form action="processLogin.mvc" method="get">
                         <table>
                             <tr>
-                                <td> <label> Enter User Name : </label> </td>
+                                <td> <label> User Name : </label> </td>
                             </tr>
                             <tr>
                                 <td> <input type="text" name="userId" /> </td>
                             </tr>
                             <tr>
-                                <td> <label> Enter Password : </label> </td>
+                                <td> <label> Password : </label> </td>
                             </tr>
                             <tr>
                                 <td> <input type="password" name="password" /> </td>

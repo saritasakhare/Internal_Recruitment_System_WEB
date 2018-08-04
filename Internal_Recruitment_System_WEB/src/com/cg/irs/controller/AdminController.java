@@ -86,6 +86,8 @@ public class AdminController {
 	{
 		try {
 			userService.deleteUser(userId);
+			List<UserBean> userList = userService.getAllUsers("101");
+			m.addAttribute("userList",userList);
 			m.addAttribute("msg","User Deleted");
 		} catch (IRSException e) {
 			e.printStackTrace();

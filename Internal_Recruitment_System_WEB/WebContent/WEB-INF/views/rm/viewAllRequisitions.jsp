@@ -37,7 +37,7 @@
 				<td>${req.skill}</td>
 				<td>${req.domain}</td>
 				<td>${req.numberRequired}</td>
-				<td><a class="button" href="viewRequisition.mvc?requisitionId=${req.requisitionId}"> View  </a></td>
+				<td><c:if test="${req.currentStatus!='CLOSED'}"><a class="button" href="viewRequisition.mvc?requisitionId=${req.requisitionId}"> View  </a></c:if></td>
 			</tr>
 		</c:forEach>
 	</table>
