@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="../../../css/main.css">
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/main.css" >
+	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/header.css" >
 </head>
 <body>
 	 <div class="header">
@@ -18,9 +19,10 @@
      </div>
      <c:if test="${user!=null }">
      	<div id="logout-div">
-     		<label> ${ user.userId} </label> <br/>
-     		<label> ${ user.role} </label> <br/>
-     		 <a href="/Internal_Recruitment_System_WEB/logout.mvc"> LogOut </a>
+     			<div class="userId"> <label > ${ user.userId} </label> </div>
+     			<div class="userRole"> <label > ${ user.role} </label> </div>
+     		
+     	<div class="logout-lnk" >	 <a href="/Internal_Recruitment_System_WEB/logout.mvc" class="btn">  Log Out </a> </div>
      	</div>
      </c:if>
 </body>
