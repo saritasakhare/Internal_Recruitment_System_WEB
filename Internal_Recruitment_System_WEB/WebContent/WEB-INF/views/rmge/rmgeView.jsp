@@ -10,7 +10,7 @@
 	<h1>resourceManagerExecutiveView</h1>
 	<h2> <a href="rmge/viewAllRequisitions.mvc"> View All Requisitions </a> </h2>
 	<h2> <a href="rmge/viewSpecificRequisitions.mvc"> View Requisitions for Specific RM </a> </h2>
-	<!-- <h2> <a href="rmge/report.mvc"> Generate Report  </a> </h2> -->
+	<h2> <a href="rmge/report.mvc"> Generate Report  </a> </h2>
 	
 </body>
 </html>

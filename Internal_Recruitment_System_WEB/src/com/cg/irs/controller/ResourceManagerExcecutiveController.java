@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,13 +156,18 @@ public class ResourceManagerExcecutiveController {
 			
 			UserBean user = (UserBean)session.getAttribute("user");
 			
-			List<RequisitionBean> requisitionList = requisitionService.getReportById(user.getUserId());
+			List<RequisitionBean> requisitionList = requisitionService.getAllRequisitions();
 			m.addAttribute("requisitionList",requisitionList);
 			
+			if(requisitionList!=null)
+				m.addAttribute("listSize",requisitionList.size());
+			else
+				m.addAttribute("listSize",0);
+			
 		} catch (IRSException e) {
-			m.addAttribute("errMsg","Cant view report : "+e.getMessage());
+			m.addAttribute("errMsg","Cant view report :"+e.getMessage());
 		}
-	
+
 		return "rmge/report";
 	}
 

@@ -21,10 +21,11 @@
 	          		</div>
 	          	</c:if>
 	          	<c:if test="${errMsg!=null}">
-	          		<div class="err-message" >
+	          		<div class="err-message" align="Center" >
 	          			${errMsg}
 	          		</div>
 	          	</c:if>
+	          	
            
             <div class="login-panel">
                 <div class="title">
