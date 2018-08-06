@@ -1,5 +1,6 @@
 package com.cg.irs.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,7 +31,6 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		} 
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to Requisition");
 		}
 		return requisitionBean;
@@ -59,7 +59,6 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to fetch Requisitions No requisitions found ");
 		}
 		return requisitions;
@@ -80,7 +79,6 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to fetch Requisitions raised by RM : "+rmId+" No requisitions found");
 		}
 		return requisitions;
@@ -91,13 +89,15 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 	{
 		RequisitionBean requisitionBean=getRequisition(requisitionId);
 		requisitionBean.setCurrentStatus(currentStatus);
+		if(currentStatus.equals("CLOSED"))
+			requisitionBean.setDateClosed(new Date());
+		
 		try 
 		{
 			entityManager.merge(requisitionBean);
 		} 
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to update status of requisition with id : "+requisitionId);
 		}
 	}
@@ -115,7 +115,6 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 			throw new IRSException(e.getMessage());
 		}
 		return requisitionBean;
@@ -147,7 +146,6 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to fetch Requisitions No requisitions found ");
 		}
 		return requisitions;
@@ -169,7 +167,6 @@ public class RequisitionDaoImpl implements IRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to fetch Requisitions No requisitions found ");
 		}
 		return requisitions;

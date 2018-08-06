@@ -16,16 +16,23 @@
 	
         <div class="body">
             <h1>Update User</h1>
-           <div class="error" align="center" style="color: red; font-family: sans-serif;">
-	          <c:if test="${msg!=null}">${msg}</c:if>
-	       </div>
-                    <div>
+           	<c:if test="${msg!=null}">
+			    <div class="message" >
+			    		${msg}
+			    </div>
+			</c:if>
+			<c:if test="${errMsg!=null}">
+			     <div class="err-message" >
+			         ${errMsg}
+			     </div>
+			</c:if>
                     
-        	<f:form  action="processAssignRoles.mvc" method="post" modelAttribute="user">
+           	<div>        
+        	<f:form  action="processAssignRoles.mvc" method="post" modelAttribute="User">
         		<table cellspacing="6" cellpadding="6">
         		<tr>
         			<th> User Id : </th>
-        			<td><f:input path="userId" disabled="true"/></td>
+        			<td><f:input path="userId" readonly="true"/></td>
         			
         		</tr>
         		<tr>

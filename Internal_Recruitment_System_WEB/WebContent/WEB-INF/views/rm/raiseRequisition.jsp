@@ -29,7 +29,7 @@
 	<sf:form action="processRaiseRequisition.mvc" modelAttribute="requisition">
 		<table>
 			<tr>
-				<td> <label>project Id</label> </td>
+				<td> <label>Project Id</label> </td>
 				<td>
 					 <input type="text" name="projectId">
 				 </td>

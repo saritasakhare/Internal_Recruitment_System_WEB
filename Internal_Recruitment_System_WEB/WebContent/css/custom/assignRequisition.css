@@ -1,0 +1,16 @@
+
+th{
+  padding-left:2%; 	
+}
+table
+{
+	width: 80%;
+}
+td{
+	text-align: center;
+}
+td a
+{
+	color:white;
+	font:bold 100% "Segoe UI";
+}

@@ -1,29 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>    
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/table.css" >
-	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/viewAllRequisitions.css" >
+	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/viewRequisitionsList.css" >
 </head>
 <body>
-	
-	<h2>All Requisitions List</h2>
 	
 	<c:if test="${msg!=null}">
 		<div class="message"> ${msg} </div>
 	</c:if>
+	<c:if test="${errMsg!=null}">
+		<label class="err-message"> ${errMsg}  </label>
+	</c:if>
+	
 	<c:if test="${listSize==0}">
 		<label class="err-message"> No Requisitions Found! </label>
 	</c:if>
 
 	<c:if test="${listSize>0}">
-	<table cellpadding="6" cellspacing="0">
+	<table cellspacing="0px">
 		<tr>
 			<th>Req. Id</th>
 			<th>RM Id</th>
@@ -33,7 +32,7 @@
 			<th>Skill</th>
 			<th>Domain</th>
 			<th>Required</th>
-			<th></th>
+			
 		</tr>
 		<c:forEach var="req" items="${requisitionList}">
 			<tr>
@@ -45,7 +44,7 @@
 				<td>${req.skill}</td>
 				<td>${req.domain}</td>
 				<td>${req.numberRequired}</td>
-				<td> <c:if test="${req.currentStatus!='CLOSED' && req.currentStatus!='ASSIGNED' }"> <a class="button" href="assignRequisition.mvc?requisitionId=${req.requisitionId}"> ASSIGN  </a> </c:if></td>
+				
 			</tr>
 		</c:forEach>
 	</table>

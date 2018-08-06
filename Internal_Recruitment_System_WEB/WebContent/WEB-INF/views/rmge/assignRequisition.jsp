@@ -10,16 +10,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/table.css" >
+	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/assignRequisition.css" >
 </head>
 <body>
 	
 	<h1>Assign Requisitions</h1>
+	
 	<c:if test="${msg!=null}">
-		${msg}
+		<div class="message"> ${msg} </div>
+	</c:if>
+	<c:if test="${listSize==0}">
+		<label class="err-message"> No Requisitions Found! </label>
 	</c:if>
 	
 	<sf:form action="saveAssignedRequisition.mvc" modelAttribute="idList">
-		<table>
+		<table cellspacing="0px">
 				<tr>
 					<th></th>
 					<th>Employee Id</th>

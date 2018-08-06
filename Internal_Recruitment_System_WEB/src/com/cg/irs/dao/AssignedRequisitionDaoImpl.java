@@ -32,7 +32,6 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to fetch Assigned Requisitions of RM : "+rmId);
 		}
 		return assignedRequisitions;
@@ -49,7 +48,6 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to add Assigned Requisition");
 		}
 		return ""+id;
@@ -73,7 +71,6 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable fetch employee ID's for requisition Id : "+requisitionId);
 		}
 		System.out.println("idList : "+empIds.size());
@@ -95,7 +92,6 @@ public class AssignedRequisitionDaoImpl implements IAssignedRequisitionDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable delete assigned requisition for requisition Id : "+requisitionId);
 		}
 		return result;

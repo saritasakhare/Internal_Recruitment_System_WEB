@@ -12,8 +12,12 @@
 <body>
 	
 	<c:if test="${msg!=null}">
-		${msg}
+		<div class="message"> ${msg} </div>
 	</c:if>
+	<c:if test="${errMsg!=null}">
+		<label class="err-message"> ${errMsg} </label>
+	</c:if>
+	
 	<sf:form action="processUpdteRequisition.mvc" modelAttribute="requisition">
 		<table>
 			<tr>
@@ -69,9 +73,9 @@
 					<sf:errors path="numberRequired"/>
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td colspan="2"> <input type="submit" value="Update Requisition" />  </td>
-			</tr>
+			</tr> -->
 		</table>
 	</sf:form>
 	<h1> <a href="viewAssignedRequisition.mvc?requisitionId=${requisitionId}"> View Assigned Employees </a> </h1>

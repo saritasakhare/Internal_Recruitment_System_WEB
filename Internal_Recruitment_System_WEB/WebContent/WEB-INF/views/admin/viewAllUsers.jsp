@@ -10,9 +10,19 @@
 </head>
 <body>
 	<h2>All User List</h2>
+	
 	<c:if test="${msg!=null}">
-		${msg}
+		<div class="message" >
+			${msg}
+		</div>
 	</c:if>
+	<c:if test="${errMsg!=null}">
+		 <div class="err-message" >
+			${errMsg}
+		</div>
+	</c:if>
+			
+	<c:if test="${listSize>0}">
 	<table>
 		<tr>
 			<th>User Id</th>
@@ -27,6 +37,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</c:if>
 	
 </body>
 </html>

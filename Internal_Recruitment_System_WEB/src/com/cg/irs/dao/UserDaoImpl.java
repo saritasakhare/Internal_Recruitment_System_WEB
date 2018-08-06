@@ -23,8 +23,6 @@ public class UserDaoImpl implements IUserDao {
 		UserBean user=null;
 		try{
 			
-			//System.out.print("\nGetting user for user : "+userBean);
-			
 			user=entityManager.find(UserBean.class,userBean.getUserId());
 			
 			if(user==null)
@@ -36,8 +34,6 @@ public class UserDaoImpl implements IUserDao {
 		{
 			throw new IRSException(e.getMessage());
 		}
-		
-		//System.out.print("\nReturing User : "+user);
 		
 		return user;
 	}
@@ -56,7 +52,6 @@ public class UserDaoImpl implements IUserDao {
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to fetch users No user found ");
 		}
 		return users;
@@ -73,7 +68,6 @@ public class UserDaoImpl implements IUserDao {
 			}
 			catch (Exception e) 
 			{
-				e.printStackTrace();
 				throw new IRSException("Unable to delete user");
 			}
 	}
@@ -92,7 +86,6 @@ public class UserDaoImpl implements IUserDao {
 		} 
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to update user role as :"+user.getRole());
 		}
 
@@ -113,7 +106,6 @@ public class UserDaoImpl implements IUserDao {
 		} 
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable to add user");
 		}
 		return userBean;

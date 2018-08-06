@@ -45,3 +45,7 @@ tr:hover
 	color:#e83939;
 	background-color:#ffffff;
 }
+tr:hover a
+{
+	color:black;
+}

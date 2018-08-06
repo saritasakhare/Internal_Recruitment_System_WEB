@@ -14,12 +14,19 @@
 
         <div class="body">
            <h1 class="frm-title" > Add User </h1>
-           <div class="message" align="center">
-	          <c:if test="${msg!=null}">${msg}</c:if>
-	   </div>
+          	<c:if test="${msg!=null}">
+			    <div class="message" >
+			    		${msg}
+			    </div>
+			</c:if>
+			<c:if test="${errMsg!=null}">
+				     <div class="err-message" >
+				         ${errMsg}
+				     </div>
+			</c:if>
         
         <div>            
-        	<f:form  action="processAddUser.mvc" method="post" modelAttribute="user">
+        	<f:form  action="processAddUser.mvc" method="post" modelAttribute="addUser">
         		<table>
         		<tr>
         			<th> Password </th>

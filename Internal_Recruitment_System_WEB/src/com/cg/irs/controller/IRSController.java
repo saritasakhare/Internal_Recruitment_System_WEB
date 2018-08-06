@@ -1,12 +1,11 @@
 package com.cg.irs.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +21,6 @@ import com.cg.irs.service.IEmployeeService;
 import com.cg.irs.service.IProjectService;
 import com.cg.irs.service.IRequisitionService;
 import com.cg.irs.service.IUserService;
-
 
 @Controller
 public class IRSController
@@ -43,49 +41,6 @@ public class IRSController
 	private IAssignedRequisitionService assingnedRequistionService;
 	
 
-	public IUserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
-	}
-
-	public IRequisitionService getRequisitionService() {
-		return requisitionService;
-	}
-
-
-	public void setRequisitionService(IRequisitionService requisitionService) {
-		this.requisitionService = requisitionService;
-	}
-
-
-	public IProjectService getProjectService() {
-		return projectService;
-	}
-
-	public void setProjectService(IProjectService projectService) {
-		this.projectService = projectService;
-	}
-
-	public IEmployeeService getEmployeeService() {
-		return employeeService;
-	}
-
-	public void setEmployeeService(IEmployeeService employeeService) {
-		this.employeeService = employeeService;
-	}
-
-
-	public IAssignedRequisitionService getAssingnedRequistionService() {
-		return assingnedRequistionService;
-	}
-
-	public void setAssingnedRequistionService(
-			IAssignedRequisitionService assingnedRequistionService) {
-		this.assingnedRequistionService = assingnedRequistionService;
-	}
 
 	/****************************************************
 	  			Mapping
@@ -105,21 +60,18 @@ public class IRSController
 	@RequestMapping(value="/adminView")
 	public String getAdminViewPage(Model m)
 	{
-		System.out.println("going to adminView");
 		return "admin/adminView";
 	}
 	
 	@RequestMapping(value="/resourceManagerView")
 	public String getResourceManagerViewPage(Model m)
 	{
-		System.out.println("going to resourceManagerView");
 		return "rm/resourceManagerView";
 	}
 	
 	@RequestMapping(value="/resourceManagerExecutiveView")
 	public String getResourceManagerExecutiveViewPage(Model m)
 	{
-		System.out.println("going to resourceManagerView");
 		return "rmge/resourceManagerExecutiveView";
 	}
 	
@@ -131,7 +83,7 @@ public class IRSController
 	@RequestMapping(value="processLogin.mvc",method=RequestMethod.GET)
 	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,HttpServletRequest req,HttpSession session,Model model)
 	{
-		System.out.print("\nvallidating user ");
+		//System.out.print("\nvallidating user ");
 		
 		String redirection ="";
 		try{
@@ -149,14 +101,13 @@ public class IRSController
 		}
 		catch(IRSException e)
 		{
-			model.addAttribute("msg", e.getMessage());
-			System.out.print("\nUser validation failed forwording to login");
-			
-			return "../../login";
+			model.addAttribute("errMsg", e.getMessage());
+			//System.out.print("\nUser validation failed forwording to login");
+			return "login";
 		}
 		catch(Exception e)
 		{
-			model.addAttribute("msg", e.getMessage());
+			model.addAttribute("errMsg", e.getMessage());
 			return "Error";
 		}	
 		
@@ -166,10 +117,8 @@ public class IRSController
 	@RequestMapping(value="logout.mvc")
 	public String logout(HttpSession session,Model model)
 	{
-		System.out.print("\nLogging Out..");
-		
+		//System.out.print("\nLogging Out..");
 		session.setAttribute("user",null);
-		
 		return "login";
 		
 	}
@@ -190,7 +139,6 @@ public class IRSController
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "Error";
 		}	

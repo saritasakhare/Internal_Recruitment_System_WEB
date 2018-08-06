@@ -13,9 +13,12 @@
 </head>
 <body>
 	
-		<h1>View Specific RM's Requisitions</h1>
+	<h1>View Specific RM's Requisitions</h1>
 	<c:if test="${msg!=null}">
-		${msg}
+		<div class="message"> ${msg} </div>
+	</c:if>
+	<c:if test="${listSize==0}">
+		<label class="err-message"> No Requisitions Found! </label>
 	</c:if>
 	
 	<form action="processViewSpecificRequisitions.mvc">

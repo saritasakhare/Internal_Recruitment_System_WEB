@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/header.css" >
 </head>
 <body>
-	<% System.out.print("\nHeader included"); %>
 	 <div class="header">
             <div class="icon"> <a href="/Internal_Recruitment_System_WEB/home.mvc"> <!-- <img src="../img/img6.jpg" /> --> </a> </div>
             <div class="title">Internal Recruitment System</div>

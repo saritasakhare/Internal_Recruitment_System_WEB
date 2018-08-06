@@ -11,6 +11,12 @@
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/table.css" >
 </head>
 <body>
+	<c:if test="${msg!=null}">
+		<div class="message"> ${msg} </div>
+	</c:if>
+	<c:if test="${errMsg==0}">
+		<label class="err-message">  ${errMsg} </label>
+	</c:if>
 	
 	<sf:form action="saveAssignedRequisition.mvc" modelAttribute="idList">
 		<table cellspacing="0px">

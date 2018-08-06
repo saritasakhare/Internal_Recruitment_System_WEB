@@ -54,10 +54,7 @@ public class ResourceManagerController {
 			ProjectBean project = new ProjectBean();
 			project.setProjectId(projectId);
 			UserBean user =  (UserBean)session.getAttribute("user");
-			/*
-			UserBean user = new UserBean();
-			user.setUserId("103");
-			*/
+			
 			requisition.setUserBean(user);
 			requisition.setProjectBean(project);
 			requisition.setCurrentStatus("OPEN");
@@ -69,12 +66,11 @@ public class ResourceManagerController {
 			
 		}
 		catch (IRSException e ) {
-			m.addAttribute("msg",e.getMessage());
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant raised requisition :"+e.getMessage());
 		}
 		catch (Exception e ) {
-			m.addAttribute("errMsg","Unable to Raise reqisition");
-			e.printStackTrace();
+			m.addAttribute("errMsg","Unable to Raise reqisition : "+e.getMessage());
+			return "Error";
 		} 
 		
 		return "rm/raiseRequisition";
@@ -97,7 +93,7 @@ public class ResourceManagerController {
 				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant vview requisitions :"+e.getMessage());
 		}
 
 		return "rm/viewRequisitionsList";
@@ -122,7 +118,7 @@ public class ResourceManagerController {
 			m.addAttribute("requisitionId", requisitionId);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view requisition :"+e.getMessage());
 		}
 		
 		return "rm/viewAssignedRequisition";
@@ -130,11 +126,12 @@ public class ResourceManagerController {
 	
 	
 	@RequestMapping(value="/viewAllRequisitions")
-	public String viewAllRequisitions(Model m)
+	public String viewAllRequisitions(HttpSession session,Model m)
 	{
 		try {
+			UserBean user = (UserBean)session.getAttribute("user");
 			
-			List<RequisitionBean> requisitionList = requisitionService.getAllRequisitions();
+			List<RequisitionBean> requisitionList = requisitionService.getSpecificRequisition(user.getUserId());
 			m.addAttribute("requisitionList",requisitionList);
 			
 			if(requisitionList!=null)
@@ -143,7 +140,7 @@ public class ResourceManagerController {
 				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view requisitions :"+e.getMessage());
 		}
 		
 		return "rm/viewRequisitionsList";
@@ -159,8 +156,7 @@ public class ResourceManagerController {
 			m.addAttribute("requisitionId",requisition.getRequisitionId());
 			
 		} catch (IRSException e) {
-			
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view requisition :"+e.getMessage());
 		} 
 		return "rm/viewRequisition";
 	}
@@ -170,8 +166,7 @@ public class ResourceManagerController {
 	{
 		try
 		{
-				RequisitionBean requisition  = requisitionService.getRequisitionById(requisitionId);
-				System.out.print("\nSubmitting...");	
+				RequisitionBean requisition  = requisitionService.getRequisitionById(requisitionId);	
 				List<EmployeeBean> selectedList = employeeService.getEmployeeListByIdList(idList.getList());
 				for(EmployeeBean emp : selectedList)
 				{
@@ -185,10 +180,10 @@ public class ResourceManagerController {
 				requisitionService.updateStatus(requisitionId, "CLOSED");
 				m.addAttribute("requisition",requisition);
 				
-				System.out.print("** Requisition Processed Successfully. **");
+				//System.out.print("** Requisition Processed Successfully. **");
 		}catch(IRSException e)
 		{
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant save  :"+e.getMessage());
 		}
 		
 		return "rm/viewRequisition";
@@ -197,7 +192,6 @@ public class ResourceManagerController {
 	/*
 	  	Report link Mapping 
 	 */
-	
 	@RequestMapping(value="/report")
 	public String getReportpage(HttpSession session,Model m)
 	{
@@ -208,8 +202,13 @@ public class ResourceManagerController {
 			List<RequisitionBean> requisitionList = requisitionService.getReportById(user.getUserId());
 			m.addAttribute("requisitionList",requisitionList);
 			
+			if(requisitionList!=null)
+				m.addAttribute("listSize",requisitionList.size());
+			else
+				m.addAttribute("listSize",0);
+			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view report :"+e.getMessage());
 		}
 
 		return "rm/report";

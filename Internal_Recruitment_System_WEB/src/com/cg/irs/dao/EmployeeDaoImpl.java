@@ -41,7 +41,6 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException("Unable fetch employees which matches skills of requisition : "+requisitionBean.getRequisitionId());
 		}
 		return employees;
@@ -68,7 +67,6 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable update project ID of employee : "+empId);
 		}
 		return result;
@@ -98,10 +96,9 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable fetch employee records");
 		}
-		System.out.println("returning employee list : "+employees.size());
+		
 		entityManager.flush();
 		
 		return employees;
@@ -122,7 +119,6 @@ public class EmployeeDaoImpl implements IEmployeeDao
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
 			throw new IRSException(e.getMessage()+"\nUnable fetch employee records with employee ID : "+empId);
 		}
 		return employee;

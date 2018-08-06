@@ -50,7 +50,7 @@ public class ResourceManagerExcecutiveController {
 				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view requisition : "+e.getMessage());
 		}
 		
 		return "rmge/viewAllRequisitions";
@@ -70,9 +70,13 @@ public class ResourceManagerExcecutiveController {
 			
 			List<RequisitionBean> list = requisitionService.getSpecificRequisition(rmId);
 			m.addAttribute("requisitionList",list);
+			if(list!=null)
+				m.addAttribute("listSize",list.size());
+			else
+				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view requisition : "+e.getMessage());
 		}
 		
 		return "rmge/viewAllRequisitions";
@@ -94,7 +98,7 @@ public class ResourceManagerExcecutiveController {
 			m.addAttribute("requisitionId",requisitionId);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Error : "+e.getMessage());
 		}
 		
 		return "rmge/assignRequisition";
@@ -107,7 +111,7 @@ public class ResourceManagerExcecutiveController {
 		try {
 			List<EmployeeBean> selectedList = employeeService.getEmployeeListByIdList(idList.getList());
 			
-			System.out.print("\nSubmitting....");
+			
 			for(EmployeeBean emp : selectedList)
 			{
 				
@@ -116,22 +120,22 @@ public class ResourceManagerExcecutiveController {
 				assigned.setRequisitionId(requisitionId);
 				assigned.setUserId("101");
 				
-				System.out.println("\ninserting assigned requisition");
+				//System.out.println("\ninserting assigned requisition");
 				
 				assignedRequisitionService.insertAssignedRequisition(assigned);
 				employeeService.updateProjectId(emp.getEmployeeId(),"ASSIGNED");
+				m.addAttribute("msg","Employees assigned to Requisition Sucessfully!");
 				
-				System.out.print("\n "+emp.getEmployeeId()+" Added. ");
 			}
 			
 			requisitionService.updateStatus(requisitionId,"ASSIGNED");
-			System.out.print("\n** Requisition Processed SuccessFully **");
+			//System.out.print("\n** Requisition Processed SuccessFully **");
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant assigend requisition : "+e.getMessage());
 		}
 		
-		return "rmge/assignRequisition";
+		return getAllRequisitionsPage(m);
 	}
 	
 	/*
@@ -149,7 +153,7 @@ public class ResourceManagerExcecutiveController {
 			m.addAttribute("requisitionList",requisitionList);
 			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant view report : "+e.getMessage());
 		}
 	
 		return "rmge/report";

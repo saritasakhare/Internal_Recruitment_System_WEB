@@ -6,11 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Internal Recruitment | Error </title>
 </head>
 <body>
- <div class="error" align="center" style="color: red; font-family: sans-serif;">
-	          <c:if test="${msg!=null}">${msg}</c:if>
-	       </div>
+ 	
+ 	<c:if test="${errMsg!=null}">
+		<div class="err-message" >
+			  ${errMsg}
+		 </div>
+	</c:if>
+	
 </body>
 </html>

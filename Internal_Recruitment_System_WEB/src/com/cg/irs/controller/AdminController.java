@@ -2,6 +2,7 @@ package com.cg.irs.controller;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cg.irs.entity.UserBean;
 import com.cg.irs.exception.IRSException;
 import com.cg.irs.service.IUserService;
-import com.cg.irs.service.UserServiceImpl;
 
 
 @Controller
@@ -28,12 +28,12 @@ public class AdminController {
 	@RequestMapping("/addUser")
 	public String getCreateUserPage(Model m)
 	{
-		m.addAttribute("user",new UserBean());
+		m.addAttribute("addUser",new UserBean());
 		return "admin/addUser";
 	}
 	
 	@RequestMapping(value="processAddUser")
-	public String processAddUser(@Valid @ModelAttribute("user") UserBean user,BindingResult rs, Model m)
+	public String processAddUser(@Valid @ModelAttribute("addUser") UserBean user,BindingResult rs, Model m)
 	{
 		
 		try {
@@ -41,7 +41,7 @@ public class AdminController {
 			UserBean userBean = userService.addUser(user);
 			m.addAttribute("msg","User Created Successfully with Id : "+userBean.getUserId());
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant create User "+e.getMessage());
 		}
 		
 		return "admin/addUser";
@@ -50,16 +50,16 @@ public class AdminController {
 	@RequestMapping("/assignRoles")
 	public String getAssignRolePage(@RequestParam("userId") String userId, Model m)
 	{
-		System.out.println("user Id : "+userId);
+		//System.out.println("user Id : "+userId);
 		if(userId!=null)
 		{
 			try {
 				UserBean user = userService.getUserById(userId);
-				System.out.println("user : "+user.getUserId());
-				m.addAttribute("user",user);
+				m.addAttribute("User",user);
 				
 			} catch (IRSException e) {
-				e.printStackTrace();
+
+				m.addAttribute("errMsg","Cant Assign Role to User "+e.getMessage());
 			}
 			
 		}
@@ -68,14 +68,14 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/processAssignRoles")
-	public String processAssignRolePage(@Valid @ModelAttribute("user") UserBean user,BindingResult rs,Model m)
+	public String processAssignRolePage(@Valid @ModelAttribute("User") UserBean user,BindingResult rs,Model m)
 	{
 		
 		try {
 			userService.updateUserRole(user);
 			m.addAttribute("msg","User Role Updated Successfully for User Id : "+user.getUserId());
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant Assign Role to User "+e.getMessage());
 		}
 		
 		return "admin/assignRoles";
@@ -85,12 +85,17 @@ public class AdminController {
 	public String deleteUser(@RequestParam("userId") String userId, Model m)
 	{
 		try {
+			
 			userService.deleteUser(userId);
 			List<UserBean> userList = userService.getAllUsers("101");
 			m.addAttribute("userList",userList);
 			m.addAttribute("msg","User Deleted");
+			
+			if(userList!=null)
+				m.addAttribute("listSize", userList.size());
+			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant View Users : "+e.getMessage());
 		}
 		
 		return "admin/viewAllUsers";
@@ -100,10 +105,15 @@ public class AdminController {
 	public String getViewAllUserPage(Model m)
 	{
 		try {
+			
 			List<UserBean> userList = userService.getAllUsers("101");
 			m.addAttribute("userList",userList);
+			
+			if(userList!=null)
+				m.addAttribute("listSize", userList.size());
+			
 		} catch (IRSException e) {
-			e.printStackTrace();
+			m.addAttribute("errMsg","Cant View Users : "+e.getMessage());
 		}
 		return "admin/viewAllUsers";
 	}
