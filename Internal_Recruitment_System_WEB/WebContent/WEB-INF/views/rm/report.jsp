@@ -20,7 +20,9 @@
 	<c:if test="${listSize==0}">
 		<label class="err-message"> No Requisitions Found! </label>
 	</c:if>
-
+	
+	<h1>Open Requisition</h1>
+	
 	<c:if test="${listSize>0}">
 	<table cellspacing="0px">
 		<tr>
@@ -35,6 +37,7 @@
 			
 		</tr>
 		<c:forEach var="req" items="${requisitionList}">
+		<c:if  test="${req.currentStatus.equals('OPEN')}">
 			<tr>
 				<td>${req.requisitionId}</td>
 				<td>${req.userBean.userId}</td>
@@ -46,6 +49,73 @@
 				<td>${req.numberRequired}</td>
 				
 			</tr>
+		</c:if>
+		</c:forEach>
+	</table>
+	</c:if>
+	
+	<h1>Assinged Requisition</h1>
+	
+	<c:if test="${listSize>0}">
+	<table cellspacing="0px">
+		<tr>
+			<th>Req. Id</th>
+			<th>RM Id</th>
+			<th>Project Id</th>
+			<th>Status</th>
+			<th>Vacancy Name</th>
+			<th>Skill</th>
+			<th>Domain</th>
+			<th>Required</th>
+			
+		</tr>
+		
+		<c:forEach var="req" items="${requisitionList}">
+		<c:if test="${req.currentStatus.equals('ASSIGNED')}">
+			<tr>
+				<td>${req.requisitionId}</td>
+				<td>${req.userBean.userId}</td>
+				<td>${req.projectBean.projectId}</td>
+				<td>${req.currentStatus}</td>
+				<td>${req.vacancyName}</td>
+				<td>${req.skill}</td>
+				<td>${req.domain}</td>
+				<td>${req.numberRequired}</td>
+				
+			</tr>
+			</c:if>
+		</c:forEach>
+	</table>
+	</c:if>
+	<h1>Closed Requisition</h1>
+	
+	<c:if test="${listSize>0}">
+	<table cellspacing="0px">
+		<tr>
+			<th>Req. Id</th>
+			<th>RM Id</th>
+			<th>Project Id</th>
+			<th>Status</th>
+			<th>Vacancy Name</th>
+			<th>Skill</th>
+			<th>Domain</th>
+			<th>Required</th>
+			
+		</tr>
+		<c:forEach var="req" items="${requisitionList}">
+		<c:if test="${req.currentStatus.equals('CLOSED')}">
+			<tr>
+				<td>${req.requisitionId}</td>
+				<td>${req.userBean.userId}</td>
+				<td>${req.projectBean.projectId}</td>
+				<td>${req.currentStatus}</td>
+				<td>${req.vacancyName}</td>
+				<td>${req.skill}</td>
+				<td>${req.domain}</td>
+				<td>${req.numberRequired}</td>
+				
+			</tr>
+			</c:if>
 		</c:forEach>
 	</table>
 	</c:if>
