@@ -44,88 +44,54 @@ public class FrontController implements Filter {
 		String path = req.getServletPath();
 		
 		System.out.print("\n--filter in for - "+path);
-		if(path.equals("/processLogin.mvc"))
+		if(path.equals("/processLogin.mvc")||path.equals("/login.mvc"))
 		{
+			System.out.print("\nlogin process found.");
 			chain.doFilter(request, response);
-		}else
-			if(!(path.endsWith(".jsp")||path.endsWith(".mvc")))
+			System.out.println("returning");
+			return ;
+			
+		}else if(!(path.endsWith(".jsp")||path.endsWith(".mvc")))
+		{
 				chain.doFilter(request, response);
-		
-		String userId = req.getParameter("userId");
-		String password = req.getParameter("password");
-	
-		System.out.print("\n "+userId+" "+password);
-		
-		HttpSession session = req.getSession(false);
-		
-		/*if(session.isNew())
-		{
-			System.out.println("new session");
-		}*/
-		
-		if(session!=null)
-		{
-			System.out.print("\nsession not null");
-			UserBean user = (UserBean) session.getAttribute("user");
-			System.out.println("user : "+user);
-			if(user!=null)
-			{
-				chain.doFilter(req, res);
 				return;
-			}
-			if(userId!=null&&password!=null)
-			{
-				System.out.println("user not null and got credinals");
+		}
+		else
+		{
+			String userId = req.getParameter("userId");
+			String password = req.getParameter("password");
+		
+			System.out.print("\n "+userId+" "+password);
+			
+			HttpSession session = req.getSession(false);
 				
-				 user = validateCredinals(userId, password);
-				 
+			if(session!=null)
+			{
+				System.out.print("\nsession not null");
+				UserBean user = (UserBean) session.getAttribute("user");
+				System.out.println("user : "+user);
 				if(user!=null)
 				{
-					System.out.print("\nuser verified forworing to home");
-					session = req.getSession(true);
-					session.setAttribute("user",user);
-					req.getRequestDispatcher("home.mvc").forward(req, res);
+					chain.doFilter(req, res);
+					return;
+				}else
+				{
+					//b1
+					
+					System.out.print("\nuser null forwording to login.mvc");
+					req.getRequestDispatcher("login.mvc").forward(request, response);
+					System.out.print("\nafter forwording");
 				}
-			}
-			
-		}else if(userId!=null&&password!=null)
-		{
-			System.out.println("user null bt got credinals");
-			
-			UserBean user = validateCredinals(userId, password);
-			if(user!=null)
+			}else
 			{
-				System.out.print("\nuser verified forworing to home");
-				session = req.getSession(true);
-				session.setAttribute("user",user);
-				req.getRequestDispatcher("home.mvc").forward(req, res);
+				System.out.print("\nuser null forwording to login.mvc");
+				req.getRequestDispatcher("login.mvc").forward(request, response);
+				System.out.print("\nafter forwording");
 			}
-		}else
-		{
-			System.out.print("\nuser null also credinals");
-			req.getRequestDispatcher("login.mvc").forward(request, response);
 		}
+	
+		//b2
 		
-		/*String path = "Error";
-		String key = null;
-		key = req.getServletPath();
-		System.out.println("Filter is Called"+key);
-		switch (key) {
-		case "homepage.jsp":
-				req.getSession(true);
-				path=key;
-				System.out.println("case 1");
-			break;			
-		default:
-			System.out.println("case 2");
-		 		
-			if(session==null)
-				path="login.mvc";
-			break;
-		}*/
-		
-		//req.getRequestDispatcher(path).forward(request, response);
-		//res.sendRedirect(path);
 		
 		System.out.print("\nout filter -- for - "+req.getServletPath());
 	}
@@ -151,3 +117,63 @@ public class FrontController implements Filter {
 	}
 
 }
+
+
+/* b1
+					if(userId!=null&&password!=null)
+					{
+						System.out.println("user :"+userId+" | "+password);
+						
+						 user = validateCredinals(userId, password);
+						 
+						if(user!=null)
+						{
+							System.out.print("\nuser verified forworing to home");
+							//session = req.getSession(true);
+							session.setAttribute("user",user);
+							req.getRequestDispatcher("home.mvc").forward(req, res);
+							return;
+						}
+					}
+				
+					}else if(userId!=null&&password!=null)
+					{
+					System.out.println("user null bt got credinals");
+					
+					UserBean user = validateCredinals(userId, password);
+					if(user!=null)
+					{
+						System.out.print("\nuser verified forworing to home");
+						session = req.getSession(true);
+						session.setAttribute("user",user);
+						req.getRequestDispatcher("home.mvc").forward(req, res);
+					}
+				}else
+				{	*/
+
+
+
+
+
+/* b2
+ * 
+ * String path = "Error";
+		String key = null;
+		key = req.getServletPath();
+		System.out.println("Filter is Called"+key);
+		switch (key) {
+		case "homepage.jsp":
+				req.getSession(true);
+				path=key;
+				System.out.println("case 1");
+			break;			
+		default:
+			System.out.println("case 2");
+		 		
+			if(session==null)
+				path="login.mvc";
+			break;
+		}*/
+
+//req.getRequestDispatcher(path).forward(request, response);
+//res.sendRedirect(path);

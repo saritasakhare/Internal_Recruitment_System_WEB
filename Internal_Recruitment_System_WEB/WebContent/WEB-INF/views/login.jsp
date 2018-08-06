@@ -14,20 +14,27 @@
     <body>
        
         <div class="body">
-          
-	          <div class="error" align="center" style="color: red; font-family: sans-serif;">
-	          <c:if test="${msg!=null}">${msg}</c:if>
-	          </div>
+	          
+	          	<c:if test="${msg!=null}">
+	          		<div class="message" >
+	          			${msg}
+	          		</div>
+	          	</c:if>
+	          	<c:if test="${errMsg!=null}">
+	          		<div class="err-message" >
+	          			${errMsg}
+	          		</div>
+	          	</c:if>
            
             <div class="login-panel">
                 <div class="title">
-                   <label class="title">LOG IN</label> 
+                   <label class="title"> LOG IN </label> 
                 </div>
                 <div class="form">
                     <form action="processLogin.mvc" method="get">
                         <table>
                             <tr>
-                                <td> <label> User Name : </label> </td>
+                                <td> <label> User Id : </label> </td>
                             </tr>
                             <tr>
                                 <td> <input type="text" name="userId" /> </td>

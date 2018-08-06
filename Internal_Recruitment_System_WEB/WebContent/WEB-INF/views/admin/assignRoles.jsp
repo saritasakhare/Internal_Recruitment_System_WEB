@@ -12,10 +12,10 @@
 <body>
 	<center>
 
-	<h1>Assign Roles</h1>
+	
 	
         <div class="body">
-            <h1>Hello From R ecruitMent System User ADMIN </h1>
+            <h1>Update User</h1>
            <div class="error" align="center" style="color: red; font-family: sans-serif;">
 	          <c:if test="${msg!=null}">${msg}</c:if>
 	       </div>

@@ -1,10 +1,12 @@
 package com.cg.irs.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -127,7 +129,7 @@ public class IRSController
 		return "login";
 	}
 	@RequestMapping(value="processLogin.mvc",method=RequestMethod.GET)
-	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,HttpSession session,Model model)
+	public String getHomePage(@RequestParam("userId") String userId, @RequestParam("password") String password,HttpServletRequest req,HttpSession session,Model model)
 	{
 		System.out.print("\nvallidating user ");
 		
@@ -148,6 +150,8 @@ public class IRSController
 		catch(IRSException e)
 		{
 			model.addAttribute("msg", e.getMessage());
+			System.out.print("\nUser validation failed forwording to login");
+			
 			return "../../login";
 		}
 		catch(Exception e)

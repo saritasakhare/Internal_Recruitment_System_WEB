@@ -73,7 +73,7 @@ public class ResourceManagerController {
 			e.printStackTrace();
 		}
 		catch (Exception e ) {
-			m.addAttribute("msg","Unable to Raise reqisition");
+			m.addAttribute("errMsg","Unable to Raise reqisition");
 			e.printStackTrace();
 		} 
 		
@@ -90,6 +90,11 @@ public class ResourceManagerController {
 			
 			List<RequisitionBean> requisitionList = requisitionService.getAssignedRequisitionsById(user.getUserId());
 			m.addAttribute("requisitionList",requisitionList);
+			
+			if(requisitionList!=null)
+				m.addAttribute("listSize",requisitionList.size());
+			else
+				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
 			e.printStackTrace();
@@ -131,6 +136,11 @@ public class ResourceManagerController {
 			
 			List<RequisitionBean> requisitionList = requisitionService.getAllRequisitions();
 			m.addAttribute("requisitionList",requisitionList);
+			
+			if(requisitionList!=null)
+				m.addAttribute("listSize",requisitionList.size());
+			else
+				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
 			e.printStackTrace();

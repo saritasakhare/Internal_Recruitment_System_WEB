@@ -13,7 +13,7 @@
 <body>
 	
 	<sf:form action="saveAssignedRequisition.mvc" modelAttribute="idList">
-		<table>
+		<table cellspacing="0px">
 			<tr>
 				<th></th>
 				<th>Employee Id</th>

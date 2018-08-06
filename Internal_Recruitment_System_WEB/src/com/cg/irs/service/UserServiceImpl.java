@@ -32,12 +32,12 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserBean login(UserBean userBean) throws IRSException {
 		
-		System.out.print("\nservice getting user");
+		//System.out.print("\nservice getting user");
 		
 		
 		UserBean user = userDao.getUserDetail(userBean);
 		
-		System.out.print("\nservice got user");
+		//System.out.print("\nservice got user");
 		
 		if(user.getPassword().equals(userBean.getPassword()))
 		{
@@ -55,16 +55,16 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserBean getUserDetail(UserBean userBean) throws IRSException {
 		
-		System.out.print("\nservice getting user");
+		//System.out.print("\nservice getting user");
 		
 		userBean = userDao.getUserDetail(userBean);
 		
-		System.out.print("\nservice got user");
+		//System.out.print("\nservice got user");
 		
 		/**Removing Password**/
 		userBean.setPassword("");
 		
-		System.out.print("\nservice reset user");
+		//System.out.print("\nservice reset user");
 		
 		return userBean;
 	}

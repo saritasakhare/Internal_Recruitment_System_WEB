@@ -23,7 +23,7 @@ public class UserDaoImpl implements IUserDao {
 		UserBean user=null;
 		try{
 			
-			System.out.print("\nGetting user for user : "+userBean);
+			//System.out.print("\nGetting user for user : "+userBean);
 			
 			user=entityManager.find(UserBean.class,userBean.getUserId());
 			
@@ -37,7 +37,7 @@ public class UserDaoImpl implements IUserDao {
 			throw new IRSException(e.getMessage());
 		}
 		
-		System.out.print("\nReturing User : "+user);
+		//System.out.print("\nReturing User : "+user);
 		
 		return user;
 	}

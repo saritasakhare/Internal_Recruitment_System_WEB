@@ -13,12 +13,12 @@
 <body>
 
         <div class="body">
-            <h1>Hello From RecruitMent System User ADMIN </h1>
-           <div class="error" align="center" style="color: red; font-family: sans-serif;">
+           <h1 class="frm-title" > Add User </h1>
+           <div class="message" align="center">
 	          <c:if test="${msg!=null}">${msg}</c:if>
-	       </div>
-                    <div>
-                    
+	   </div>
+        
+        <div>            
         	<f:form  action="processAddUser.mvc" method="post" modelAttribute="user">
         		<table>
         		<tr>

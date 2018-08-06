@@ -44,6 +44,10 @@ public class ResourceManagerExcecutiveController {
 			
 			List<RequisitionBean> requisitionList = requisitionService.getAllRequisitions();
 			m.addAttribute("requisitionList", requisitionList);
+			if(requisitionList!=null)
+				m.addAttribute("listSize",requisitionList.size());
+			else
+				m.addAttribute("listSize",0);
 			
 		} catch (IRSException e) {
 			e.printStackTrace();

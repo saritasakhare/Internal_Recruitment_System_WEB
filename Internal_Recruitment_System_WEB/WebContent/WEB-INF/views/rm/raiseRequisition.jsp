@@ -10,13 +10,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/form.css" >
+	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/raiseRequisition.css" >
 </head>
 <body>
 	<h1>Raise Requisition</h1>
 	
 	<c:if test="${msg!=null}">
-		${msg}
+	    <div class="message" >
+	    		${msg}
+	    </div>
 	</c:if>
+	<c:if test="${errMsg!=null}">
+	     <div class="err-message" >
+	         ${errMsg}
+	     </div>
+	</c:if>
+	          	
 	<sf:form action="processRaiseRequisition.mvc" modelAttribute="requisition">
 		<table>
 			<tr>

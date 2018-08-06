@@ -9,14 +9,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/table.css" >
+	<link rel="stylesheet" href="/Internal_Recruitment_System_WEB/css/custom/viewRequisitionsList.css" >
 </head>
 <body>
 	
 	<h2>All Requisitions List</h2>
+	
 	<c:if test="${msg!=null}">
-		${msg}
+		<div class="message"> ${msg} </div>
 	</c:if>
-	<table>
+	<c:if test="${listSize==0}">
+		<label class="err-message"> No Requisitions Found! </label>
+	</c:if>
+
+	<c:if test="${listSize>0}">
+	<table cellspacing="0px">
 		<tr>
 			<th>Req. Id</th>
 			<th>RM Id</th>
@@ -26,6 +33,7 @@
 			<th>Skill</th>
 			<th>Domain</th>
 			<th>Required</th>
+			<th></th>
 		</tr>
 		<c:forEach var="req" items="${requisitionList}">
 			<tr>
@@ -41,6 +49,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+	</c:if>
 </body>
 </html>
