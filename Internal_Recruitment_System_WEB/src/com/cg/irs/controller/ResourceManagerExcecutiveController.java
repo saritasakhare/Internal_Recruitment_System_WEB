@@ -89,13 +89,19 @@ public class ResourceManagerExcecutiveController {
 		try {
 			RequisitionBean req = requisitionService.getRequisitionById(requisitionId);
 			List<EmployeeBean> empList = employeeService.getMatchingEmployeeList(req);
-			
+			if(req.getNumberRequired()>empList.size())
+			{
+				throw new IRSException("No Of Required Resources Not Available");
+			}
 			for(EmployeeBean emp:empList)
 			System.out.println("\nemp : "+emp);
 			
 			m.addAttribute("employeeList",empList);
 			m.addAttribute("idList", new IdList());
 			m.addAttribute("requisitionId",requisitionId);
+			
+			if(empList!=null)
+				m.addAttribute("listSize",empList.size());
 			
 		} catch (IRSException e) {
 			m.addAttribute("errMsg","Error : "+e.getMessage());

@@ -19,11 +19,11 @@
 	<c:if test="${msg!=null}">
 		<div class="message"> ${msg} </div>
 	</c:if>
-	<c:if test="${listSize==0}">
-		<label class="err-message"> No Requisitions Found! </label>
+	<c:if test="${errMsg!=null}">
+		<label class="err-message">${errMsg } </label>
 	</c:if>
-	
 	<sf:form action="saveAssignedRequisition.mvc" modelAttribute="idList">
+	<c:if test="${listSize>0}">
 		<table cellspacing="0px">
 				<tr>
 					<th></th>
@@ -46,7 +46,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
+		</c:if>
 		<input type="hidden" name="requisitionId" value="${requisitionId}">
 		<input type="submit" value="Save Assigned">
 	</sf:form>
